@@ -257,10 +257,11 @@
   }
   .hero-panel{
     position:relative;
-    background-color:var(--surface);
-    border:1px solid var(--grid);
-    padding:28px;
   }
+  .shot-viewer-hero{
+    height:480px;
+  }
+  @media (max-width:1024px){ .shot-viewer-hero{ height:420px; } }
   .hero-panel-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -346,6 +347,86 @@
   @media (max-width:1024px){ .live-embed-frame{ height:480px; } }
   @media (max-width:640px){ .live-embed-frame{ height:400px; } }
 
+  /* ===== Screenshot Slideshow (CSS @keyframes, 11 slides / 55s loop, shuffled via JS on load) ===== */
+  .shot-viewer{
+    position:relative;
+    width:100%;
+    height:560px;
+    border:1px solid var(--grid);
+    background-color:var(--bg);
+    background-image:radial-gradient(circle, var(--grid) 1px, transparent 1px);
+    background-size:24px 24px;
+    overflow:hidden;
+  }
+  .shot-index{
+    position:absolute;
+    top:16px; left:16px;
+    z-index:2;
+    background-color:var(--surface);
+    padding:4px 8px;
+    border:1px solid var(--grid);
+  }
+  .shot-track{ position:absolute; inset:0; }
+  .shot-slide{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    animation:shotFade 55s infinite;
+  }
+  /* 이미지 순서는 JS가 로드 시 셔플 — 딜레이는 DOM 위치(1~11번째) 기준으로 균등 배분됨 */
+  .shot-track .shot-slide:nth-child(1){ animation-delay:0s; }
+  .shot-track .shot-slide:nth-child(2){ animation-delay:5s; }
+  .shot-track .shot-slide:nth-child(3){ animation-delay:10s; }
+  .shot-track .shot-slide:nth-child(4){ animation-delay:15s; }
+  .shot-track .shot-slide:nth-child(5){ animation-delay:20s; }
+  .shot-track .shot-slide:nth-child(6){ animation-delay:25s; }
+  .shot-track .shot-slide:nth-child(7){ animation-delay:30s; }
+  .shot-track .shot-slide:nth-child(8){ animation-delay:35s; }
+  .shot-track .shot-slide:nth-child(9){ animation-delay:40s; }
+  .shot-track .shot-slide:nth-child(10){ animation-delay:45s; }
+  .shot-track .shot-slide:nth-child(11){ animation-delay:50s; }
+
+  .shot-img-wrap{
+    flex:1;
+    min-height:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px 32px 12px;
+  }
+  .shot-slide img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    border:1px solid var(--grid);
+    background-color:var(--surface);
+  }
+  .shot-caption{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--text-muted);
+    text-align:center;
+    padding:10px 16px;
+    border-top:1px solid var(--grid);
+    background-color:var(--surface);
+  }
+  .shot-caption .idx{ color:var(--accent); margin-right:6px; }
+
+  .shot-viewer:hover .shot-slide{ animation-play-state:paused; }
+
+  /* 11장 · 55s 루프 · 슬롯 9.09% (0.5s 페이드인/아웃) */
+  @keyframes shotFade{
+    0%     { opacity:0; }
+    0.91%  { opacity:1; }
+    8.18%  { opacity:1; }
+    9.09%  { opacity:0; }
+    100%   { opacity:0; }
+  }
+
+  @media (max-width:768px){ .shot-viewer{ height:460px; } }
+
   /* ===== Tags ===== */
   .tag-group{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
   .tag{
@@ -416,6 +497,8 @@
   @media (prefers-reduced-motion: reduce){
     *{ transition:none !important; scroll-behavior:auto !important; }
     .reveal{ opacity:1 !important; }
+    .shot-slide{ animation:none !important; opacity:0; }
+    .shot-track .shot-slide:first-child{ opacity:1; }
   }
 
 /* ===== Toast Notification Style ===== */
@@ -440,6 +523,31 @@
 .toast.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.hero-panel,
+.shot-viewer,
+.shot-viewer-hero {
+  border: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.shot-viewer .corner {
+  display: none !important;
+}
+
+.shot-img-wrap {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.shot-caption {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding-left: 0 !important;
 }
 
 </style>
@@ -477,32 +585,57 @@
             <a href="#doc-hub" class="btn btn-primary">라이브 문서 열람하기</a>
           </div>
         </div>
-
-        <div class="hero-panel reveal">
-          <span class="index-tag">[ PROFILE // x: 900 / y: 40 ]</span>
-          <div class="hero-panel-grid">
-            <div class="hero-stat">
-              <span class="num">6yr</span>
-              <span class="label">Game Planning &amp; PM</span>
-            </div>
-            <div class="hero-stat">
-              <span class="num">2</span>
-              <span class="label">Track — RPG / OTT</span>
-            </div>
-            <div class="hero-stat">
-              <span class="num">68%</span>
-              <span class="label">AWS 인프라 비용 절감</span>
-            </div>
-            <div class="hero-stat">
-              <span class="num">1st</span>
-              <span class="label">중소기업 최초 자체등급분류</span>
-            </div>
-          </div>
-        </div>
+<div class="hero-panel reveal">
+  <div class="shot-viewer shot-viewer-hero">
+    <span class="index-tag shot-index">[ SCREENSHOTS // 11 IMAGES · SHUFFLED ]</span>
+    <div class="shot-track">
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-01.png" alt="kingdomstory-unit" /></div>
+        <div class="shot-caption"><span class="idx">[01]</span>킹덤스토리 신규 유닛-양유기(unity2D)</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-02.png" alt="kingdomstory-guildcastle" /></div>
+        <div class="shot-caption"><span class="idx">[02]</span>킹덤스토리 군단성(unity2D)</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-03.png" alt="love-recipe/lovey dubby" /></div>
+        <div class="shot-caption"><span class="idx">[03]</span>러브레시피 NPC 가든</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-04.png" alt="love-recipe/lovey dubby" /></div>
+        <div class="shot-caption"><span class="idx">[04]</span>러브레시피 플레이화면(unity3D)</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-05.png" alt="MOA OTT" /></div>
+        <div class="shot-caption"><span class="idx">[05]</span>OTT 숏드 도입</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-06.png" alt="MOA OTT" /></div>
+        <div class="shot-caption"><span class="idx">[06]</span>OTT 연령제한</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-07.png" alt="MOA OTT" /></div>
+        <div class="shot-caption"><span class="idx">[07]</span>OTT 자막 서비스 도입</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-08.jpg" alt="Day7 mainmenu" /></div>
+        <div class="shot-caption"><span class="idx">[08]</span>한입만 줄래? 플레이화면</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-09.jpg" alt="Day7 story" /></div>
+        <div class="shot-caption"><span class="idx">[09]</span>한입만 줄래? 플레이화면</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-10.jpg" alt="Day7 info menu" /></div>
+        <div class="shot-caption"><span class="idx">[10]</span>한입만 줄래? 플레이화면</div>
+      </div>
+      <div class="shot-slide">
+        <div class="shot-img-wrap"><img src="./screenshots/shot-11.jpg" alt="Day7 main/costume" /></div>
+        <div class="shot-caption"><span class="idx">[11]</span>한입만 줄래? 플레이화면</div>
       </div>
     </div>
-  </section>
-
+  </div>
+</div>
   <!-- Live Document Hub -->
   <section id="doc-hub" class="section-pad section-divider">
     <div class="inner">
@@ -583,7 +716,6 @@
 
     </div>
   </section>
-
 
   <!-- Highlight Section -->
 <section id="highlight" class="section-pad section-divider">
@@ -683,6 +815,18 @@
     document.getElementById(tabId).classList.add('active');
     btnElement.classList.add('active');
   }
+
+  // Screenshot slideshow — 로드 시 1회 순서 셔플 (표시 타이밍은 CSS @keyframes가 그대로 담당)
+  (function shuffleShots(){
+    const track = document.querySelector('.shot-track');
+    if (!track) return;
+    const slides = Array.from(track.children);
+    for (let i = slides.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [slides[i], slides[j]] = [slides[j], slides[i]];
+    }
+    slides.forEach(el => track.appendChild(el));
+  })();
 
   // Scroll reveal
   if ('IntersectionObserver' in window) {
