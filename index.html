@@ -484,16 +484,16 @@
       <h2>Live Document Hub</h2>
       <p class="hero-sub" style="margin-bottom:40px;">Figma 데크, 역기획서 슬라이드, Google Docs 및 경력기술서를 웹페이지 안에서 직접 열람하세요.</p>
 
-      <div class="doc-tabs-nav">
-        <button class="doc-tab-btn active" onclick="switchDocTab('tab-figma', this)"><span class="idx">[01]</span>Figma 포트폴리오 슬라이드</button>
-        <button class="doc-tab-btn" onclick="switchDocTab('tab-warframe', this)"><span class="idx">[02]</span>워프레임 MOD 역기획서</button>
-        <button class="doc-tab-btn" onclick="switchDocTab('tab-gdocs', this)"><span class="idx">[03]</span>MOA OTT 상세 기획서</button>
-        <button class="doc-tab-btn" onclick="switchDocTab('tab-pdf', this)"><span class="idx">[04]</span>경력기술서 &amp; 포트폴리오</button>
+<div class="doc-tabs-nav">
+        <button class="doc-tab-btn active" onclick="switchDocTab('tab-pdf', this)"><span class="idx">[01]</span>경력기술서 &amp; 포트폴리오</button>
+        <button class="doc-tab-btn" onclick="switchDocTab('tab-figma', this)"><span class="idx">[02]</span>Figma 포트폴리오 슬라이드</button>
+        <button class="doc-tab-btn" onclick="switchDocTab('tab-warframe', this)"><span class="idx">[03]</span>워프레임 MOD 역기획서</button>
+        <button class="doc-tab-btn" onclick="switchDocTab('tab-gdocs', this)"><span class="idx">[04]</span>MOA OTT 상세 기획서</button>
       </div>
 
 
       <!-- Tab 1 -->
-      <div id="tab-pdf" class="doc-tab-content">
+<div id="tab-pdf" class="doc-tab-content active">
         <div class="doc-viewer-header">
           <div>
             <h3 class="doc-viewer-title">곽성은 경력기술서 PDF</h3>
@@ -502,11 +502,11 @@
           <a href="./곽성은_경력기술서.pdf" download class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">PDF 다운로드 ↓</a>
         </div>
         <div class="live-embed-frame">
-          <iframe src="./곽성은_경력기술서.pdf"></iframe>
+          <object data="./곽성은_경력기술서.pdf" type="application/pdf" width="100%" height="100%">
+            <iframe src="./곽성은_경력기술서.pdf"></iframe>
+          </object>
         </div>
       </div>
-    </div>
-  </section>
 
       <!-- Tab 2 -->
       <div id="tab-warframe" class="doc-tab-content">
@@ -567,15 +567,37 @@
           <h3 style="margin-top:6px;">씨네온티브이/SJMNC &amp; SJMNC</h3>
           <p class="career-role">OTT 서비스 MOA Platform PM</p>
           <ul class="career-list">
-            <li>스마트 TV 멀티 디바이스 서비스 확장</li>
-            <li>정부 규제 대응 및 법적 권한 확보</li>
-            <li>인프라 비용 구조 혁신: OVP(온라인 비디오 플랫폼) 이관 및 ABR(Adaptive Bitrate) 스트리밍 최적화 </li>
-            <li>비즈니스 다각화 & FAST TRACK 도입</li>
+            <li>
+    <strong>스마트 TV 멀티 디바이스 서비스 확장</strong>
+    <span class="career-note">// LG, Samsung, Android TV 전용 MOA App 플랫폼 서비스 기획 및 런칭 총괄</span>
+  </li>
+            <li>
+    <strong>정부 규제 대응 및 법적 권한 확보</strong>
+    <span class="career-note">// 영상물등급위원회 주관 '2025년 영상물 자체등급분류 사업자' 지정 추진 (카카오, 네이버와 함께 중소기업 최초 선정)</span>
+  </li>
+            <li>
+    <strong>인프라 비용 구조 혁신: OVP 이관 및 ABR 스트리밍 최적화</strong>
+    <span class="career-note">// AWS 트래픽 구조 재설계 및 ABR 가변 비트레이트 적용으로 인프라 비용 68% 절감</span>
+  </li>
+            <li>
+    <strong>비즈니스 다각화 &amp; FAST TRACK 도입</strong>
+    <span class="career-note">// 편성 공백 최소화를 위한 FAST TRACK 라이브러리 구축 및 쿠팡플레이·티빙 등 주요 OTT 플랫폼과의 VOD 수입·배급 조율</span>
+  </li>
           </ul>
           <div class="tag-group">
-            <span class="tag">OTT PM</span>
-            <span class="tag">자체등급분류</span>
-            <span class="tag">TV App</span>
+            <li>
+    <strong>엔드 콘텐츠 '선인의 탑(무한 PvE 던전)' 기획 및 밸런싱</strong>
+    <span class="career-note">// 서비스 4년 차 고레벨 유저의 재접속률 및 재화 보유량 분석을 바탕으로 성장의 천장(Max Level)과 지속적인 플레이 동기 제공</span>
+  </li>
+            <li>
+    <strong>유저 선택형 퀘스트 '현상금' 시스템 설계</strong>
+    <span class="career-note">// 난이도별 퀘스트 생성 로직 및 재화 순환 밸런싱으로 일일 루틴 강화</span>
+  </li>
+            <li>
+    <strong>대규모 PvP 및 시나리오 디자인</strong>
+    <span class="career-note">// 유닛 스킬 상성 밸런스 튜닝 및 유닛 활용도 강화& 세계관 확립 등</span>
+  </li>
+</ul>
           </div>
         </div>
 
