@@ -417,6 +417,31 @@
     *{ transition:none !important; scroll-behavior:auto !important; }
     .reveal{ opacity:1 !important; }
   }
+
+/* ===== Toast Notification Style ===== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--text);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  padding: 12px 20px;
+  border-left: 3px solid var(--accent);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+  pointer-events: none;
+  z-index: 1000;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 <body>
@@ -425,16 +450,18 @@
 
   <!-- Nav -->
   <header class="nav-header">
-    <div class="inner nav-inner">
-      <a href="#top" class="nav-logo">KWACK_SEONGEUN<span>.</span></a>
-      <ul class="nav-links">
-        <li><a href="#about">[01] 경력 요약</a></li>
-        <li><a href="#doc-hub">[02] 라이브 문서 뷰어</a></li>
-        <li><a href="#about">[03] 프로젝트 경험</a></li>
-        <li class="nav-cta-item"><a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" rel="noopener" class="nav-cta">FIGMA ↗</a></li>
-      </ul>
-    </div>
-  </header>
+  <div class="inner nav-inner">
+    <a href="#top" class="nav-logo">KWACK_SEONGEUN<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">[01] Intre</a></li>
+      <li><a href="#doc-hub">[02] Portfoilo Viewer</a></li>
+      <li><a href="#about">[03] Highlight </a></li>
+      <li class="nav-cta-item">
+        <button type="button" class="nav-cta" onclick="copyEmail()">EMAIL ✉</button>
+      </li>
+    </ul>
+  </div>
+</header>
 
   <!-- Hero -->
   <section id="top" class="section-pad section-divider">
@@ -563,7 +590,7 @@
   <!-- Career Overview -->
   <section id="about" class="section-pad section-divider">
     <div class="inner">
-      <span class="eyebrow">CAREER</span>
+      <span class="eyebrow">Highlight</span>
       <h2>Career Overview</h2>
       <p class="hero-sub" style="margin-bottom:40px;">라이브 서비스 운영과 시스템 구조화를 아우르는 실행 중심 경험</p>
 
@@ -660,6 +687,38 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+<!-- Toast UI Container -->
+<div id="toast" class="toast">이메일이 복사되었습니다. 감사합니다.</div>
+
+<script>
+  function copyEmail() {
+    const email = 'Kwaksu91@gmail.com';
+    
+    // 클립보드 복사 실행
+    navigator.clipboard.writeText(email).then(() => {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      
+      // 2.5초 후 토스트 자동 숨김
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }).catch(err => {
+      // 구형 브라우저 대응 fallback
+      const textArea = document.createElement("textarea");
+      textArea.value = email;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    });
   }
 </script>
 
