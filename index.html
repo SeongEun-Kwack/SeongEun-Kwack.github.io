@@ -1,426 +1,574 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>곽성은 | 게임 기획자 & PM 포트폴리오 Hub</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>곽성은 | 게임 기획자 & PM 포트폴리오 Hub</title>
+<meta name="description" content="시스템과 데이터를 구조화하는 6년 차 게임 기획자 & PM, 곽성은의 라이브 문서 포트폴리오." />
 
-  <!-- Typography: Pretendard (Hero H1) & Spoqa Han Sans Neo (Text & Body) -->
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    /* Codeit Reference Design System Tokens */
-    :root {
-      /* Colors */
-      --color-purple: #9933ff;
-      --color-bright-violet: #8f00ff;
-      --color-deep-violet: #760dde;
-      --color-lavender: #b363fd;
-      --color-soft-lavender: #c47cfd;
-      --color-pink: #ff52b7;
-      
-      --color-ink: #333236;
-      --color-night: #080c14;
-      --color-plum: #3d1457;
+<style>
+  /* ===== Blueprint Grid — Design Tokens ===== */
+  :root{
+    --bg:#fafafa;
+    --surface:#ffffff;
+    --text:#0a0a0a;
+    --text-muted:#6b6b6b;
+    --border:#e6e6e6;
+    --grid:#e6e6e6;
+    --cross:#c2c2c2;
+    --accent:#e5484d;
+    --font-display:'IBM Plex Sans', Inter, sans-serif;
+    --font-mono:'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+    --unit:24px;
+    --content-max:1200px;
+  }
 
-      --color-canvas: #ffffff;
-      --color-surface: #f6f6f8;
-      --color-violet-surface: #f8ecff;
-      --color-violet-tint: #f3e1fd;
+  *{ box-sizing:border-box; margin:0; padding:0; }
 
-      /* Typography */
-      --font-display: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-      --font-text: 'Spoqa Han Sans Neo', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  html{ scroll-behavior:smooth; }
 
-      /* Radii */
-      --radius-chip: 6px;
-      --radius-btn: 10px;
-      --radius-pill: 22px;
-      --radius-card-sm: 20px;
-      --radius-card-lg: 24px;
-    }
+  body{
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(circle, var(--grid) 1px, transparent 1px);
+    background-size: var(--unit) var(--unit);
+    color:var(--text);
+    font-family:var(--font-display);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  a{ color:inherit; }
 
-    body {
-      background-color: var(--color-canvas);
-      color: var(--color-ink);
-      font-family: var(--font-text);
-      font-size: 16px;
-      font-weight: 400;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
+  .frame{
+    max-width:var(--content-max);
+    margin:0 auto;
+    border-left:1px solid var(--grid);
+    border-right:1px solid var(--grid);
+    background-color:transparent;
+  }
 
-    /* Layout Containers */
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+  .inner{ padding:0 var(--unit); }
 
-    .section-band {
-      width: 100%;
-      padding: 80px 0;
-    }
-    .band-white { background-color: var(--color-canvas); }
-    .band-surface { background-color: var(--color-surface); }
-    .band-violet { background-color: var(--color-violet-surface); }
-    .band-night { background-color: var(--color-night); color: #ffffff; }
+  section{ position:relative; }
 
-    /* Navigation */
-    .nav-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(51, 50, 54, 0.08);
-      height: 64px;
-    }
-    .nav-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-    }
-    .nav-logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--color-ink);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(51, 50, 54, 0.8);
-      text-decoration: none;
-      transition: color 120ms ease;
-    }
-    .nav-links a:hover {
-      color: var(--color-ink);
-    }
-    .nav-chip {
-      background-color: var(--color-purple);
-      color: #ffffff !important;
-      padding: 6px 12px 5px;
-      border-radius: var(--radius-chip);
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      display: inline-block;
-    }
+  .section-pad{ padding:96px 0; }
+  .section-pad-sm{ padding:64px 0; }
 
-    /* Typography Hierarchy */
-    .hero-h1 {
-      font-family: var(--font-display);
-      font-size: 68px;
-      font-weight: 800;
-      line-height: 1.21;
-      letter-spacing: -1.5px;
-      color: var(--color-ink);
-      margin-bottom: 24px;
-    }
-    .section-title {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1.29;
-      letter-spacing: -1.0px;
-      color: var(--color-ink);
-      margin-bottom: 16px;
-    }
-    .section-sub {
-      font-size: 18px;
-      font-weight: 400;
-      color: rgba(51, 50, 54, 0.7);
-      margin-bottom: 48px;
-    }
+  .section-divider{
+    border-top:1px solid var(--grid);
+  }
 
-    /* Buttons */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--color-purple);
-      color: #ffffff;
-      height: 48px;
-      padding: 10px 32px;
-      border-radius: var(--radius-btn);
-      font-size: 18px;
-      font-weight: 700;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: transform 120ms ease, opacity 120ms ease;
-    }
-    .btn-primary:hover { opacity: 0.92; }
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: transparent;
-      color: var(--color-ink);
-      height: 48px;
-      padding: 8px 24px;
-      border-radius: 8px;
-      border: 1px solid rgba(51, 50, 54, 0.2);
-      font-size: 16px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background-color 120ms ease;
-    }
-    .btn-outline:hover { background-color: rgba(51, 50, 54, 0.04); }
-    .btn-group { display: flex; gap: 16px; align-items: center; }
+  /* ===== Eyebrow / Mono labels ===== */
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    font-weight:500;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .eyebrow::before{ content:'//'; color:var(--cross); }
 
-    /* Grid Layouts & Cards */
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .index-tag{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--text-muted);
+    letter-spacing:0.02em;
+  }
 
-    .card-standard {
-      background-color: var(--color-canvas);
-      border-radius: var(--radius-card-sm);
-      border: 1px solid rgba(51, 50, 54, 0.15);
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card-standard h3 {
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      margin-bottom: 12px;
-    }
+  .coord{
+    font-family:var(--font-mono);
+    font-size:0.7rem;
+    color:var(--text-muted);
+    letter-spacing:0.01em;
+  }
 
-    /* --- Interactive Live Document Hub Tabs --- */
-    .doc-hub-container {
-      background: var(--color-canvas);
-      border-radius: var(--radius-card-lg);
-      border: 1px solid rgba(51, 50, 54, 0.15);
-      box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 14px;
-      padding: 32px;
-      overflow: hidden;
-    }
-    .doc-tabs-nav {
-      display: flex;
-      gap: 12px;
-      border-bottom: 2px solid var(--color-surface);
-      padding-bottom: 16px;
-      margin-bottom: 24px;
-      overflow-x: auto;
-    }
-    .doc-tab-btn {
-      background: var(--color-surface);
-      color: var(--color-ink);
-      border: none;
-      padding: 10px 20px;
-      border-radius: var(--radius-pill);
-      font-size: 15px;
-      font-weight: 500;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 120ms ease;
-    }
-    .doc-tab-btn:hover { background-color: var(--color-violet-tint); }
-    .doc-tab-btn.active {
-      background-color: var(--color-purple);
-      color: #ffffff;
-      font-weight: 700;
-    }
+  /* ===== Typography ===== */
+  h1{
+    font-size:clamp(2.4rem, 5vw, 4.2rem);
+    font-weight:600;
+    letter-spacing:-0.02em;
+    line-height:1.08;
+  }
+  h2{
+    font-size:clamp(1.6rem, 2.8vw, 2.3rem);
+    font-weight:600;
+    line-height:1.15;
+    letter-spacing:-0.01em;
+  }
+  h3{
+    font-size:1.15rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  p{ color:var(--text); }
+  .muted{ color:var(--text-muted); }
 
-    .doc-viewer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .doc-viewer-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--color-ink);
-    }
+  /* ===== Nav ===== */
+  .nav-header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background-color:rgba(250,250,250,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--grid);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .nav-logo{
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    text-decoration:none;
+    color:var(--text);
+  }
+  .nav-logo span{ color:var(--accent); }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    list-style:none;
+  }
+  .nav-links a{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    font-weight:500;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    text-decoration:none;
+    color:var(--text-muted);
+    transition:color 160ms ease-out;
+  }
+  .nav-links a:hover{ color:var(--accent); }
+  .nav-cta{
+    border:1px solid var(--text);
+    padding:7px 14px;
+    color:var(--text) !important;
+    transition:border-color 160ms ease-out, color 160ms ease-out, background-color 160ms ease-out;
+  }
+  .nav-cta:hover{
+    border-color:var(--accent);
+    color:#ffffff !important;
+    background-color:var(--accent);
+  }
+  @media (max-width:768px){
+    .nav-links{ gap:14px; }
+    .nav-links li:not(.nav-cta-item){ display:none; }
+  }
 
-    .live-embed-frame {
-      position: relative;
-      width: 100%;
-      height: 680px;
-      border-radius: 12px;
-      border: 1px solid rgba(51, 50, 54, 0.15);
-      background-color: var(--color-surface);
-      overflow: hidden;
-    }
-    .live-embed-frame iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
+  /* ===== Buttons ===== */
+  .btn{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    font-weight:500;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    height:48px;
+    padding:0 28px;
+    border-radius:0;
+    border:1px solid var(--text);
+    transition:background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background-color:var(--accent);
+    border-color:var(--accent);
+    color:#ffffff;
+  }
+  .btn-primary:hover{ background-color:#c93a3e; border-color:#c93a3e; }
+  .btn-outline{
+    background-color:transparent;
+    color:var(--text);
+  }
+  .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
+  .btn-group{ display:flex; gap:16px; flex-wrap:wrap; }
 
-    .doc-tab-content { display: none; }
-    .doc-tab-content.active { display: block; }
+  /* ===== Blueprint card w/ corner cross markers ===== */
+  .bp-card{
+    position:relative;
+    background-color:var(--surface);
+    border:1px solid var(--grid);
+    padding:32px;
+    --cross-color:var(--cross);
+    transition:border-color 160ms ease-out;
+  }
+  .bp-card:hover{ --cross-color:var(--accent); border-color:var(--accent); }
 
-    .tag-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 24px; }
-    .tag {
-      background-color: var(--color-surface);
-      color: var(--color-ink);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-    }
+  .corner{
+    position:absolute;
+    width:12px;
+    height:12px;
+    pointer-events:none;
+  }
+  .corner::before{
+    content:'';
+    position:absolute;
+    top:50%; left:0;
+    width:100%; height:1px;
+    background-color:var(--cross-color);
+    transform:translateY(-50%);
+    transition:background-color 160ms ease-out;
+  }
+  .corner::after{
+    content:'';
+    position:absolute;
+    left:50%; top:0;
+    height:100%; width:1px;
+    background-color:var(--cross-color);
+    transform:translateX(-50%);
+    transition:background-color 160ms ease-out;
+  }
+  .corner.tl{ top:-6px; left:-6px; }
+  .corner.tr{ top:-6px; right:-6px; }
+  .corner.bl{ bottom:-6px; left:-6px; }
+  .corner.br{ bottom:-6px; right:-6px; }
 
-    /* Footer */
-    footer { padding: 48px 0; font-size: 14px; color: rgba(255, 255, 255, 0.6); }
-    footer a { color: #ffffff; text-decoration: underline; }
+  /* ===== Hero ===== */
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:var(--unit);
+    align-items:start;
+  }
+  .hero-sub{
+    font-size:1.05rem;
+    color:var(--text-muted);
+    max-width:56ch;
+    margin:20px 0 40px;
+  }
+  .hero-panel{
+    position:relative;
+    background-color:var(--surface);
+    border:1px solid var(--grid);
+    padding:28px;
+  }
+  .hero-panel-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background-color:var(--grid);
+    border:1px solid var(--grid);
+    margin-top:8px;
+  }
+  .hero-stat{
+    background-color:var(--surface);
+    padding:20px 16px;
+  }
+  .hero-stat .num{
+    font-family:var(--font-mono);
+    font-size:1.6rem;
+    font-weight:600;
+    color:var(--accent);
+    display:block;
+  }
+  .hero-stat .label{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    display:block;
+    margin-top:6px;
+  }
+  @media (max-width:1024px){
+    .hero-grid{ grid-template-columns:1fr; }
+  }
 
-    @media (max-width: 1024px) {
-      .hero-h1 { font-size: 48px; letter-spacing: -1.0px; }
-      .section-title { font-size: 36px; }
-      .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      .live-embed-frame { height: 500px; }
-    }
-    @media (max-width: 640px) {
-      .hero-h1 { font-size: 36px; letter-spacing: -0.5px; }
-      .btn-group { flex-direction: column; align-items: stretch; }
-      .btn-primary, .btn-outline { width: 100%; }
-      .live-embed-frame { height: 420px; }
-    }
-  </style>
+  /* ===== Doc Hub ===== */
+  .doc-tabs-nav{
+    display:flex;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--grid);
+    margin-bottom:32px;
+  }
+  .doc-tab-btn{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    font-weight:500;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    background:none;
+    border:none;
+    border-bottom:2px solid transparent;
+    color:var(--text-muted);
+    padding:12px 18px 12px 0;
+    margin-right:24px;
+    cursor:pointer;
+    transition:color 160ms ease-out, border-color 160ms ease-out;
+    text-align:left;
+  }
+  .doc-tab-btn .idx{ color:var(--accent); margin-right:8px; }
+  .doc-tab-btn:hover{ color:var(--text); }
+  .doc-tab-btn.active{ color:var(--text); border-bottom-color:var(--accent); }
+
+  .doc-tab-content{ display:none; }
+  .doc-tab-content.active{ display:block; }
+
+  .doc-viewer-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .doc-viewer-title{ margin-bottom:6px; }
+  .doc-viewer-desc{ font-size:0.9rem; color:var(--text-muted); max-width:60ch; }
+
+  .live-embed-frame{
+    width:100%;
+    height:640px;
+    border:1px solid var(--grid);
+    overflow:hidden;
+    position:relative;
+  }
+  .live-embed-frame iframe{ width:100%; height:100%; border:0; }
+
+  @media (max-width:1024px){ .live-embed-frame{ height:480px; } }
+  @media (max-width:640px){ .live-embed-frame{ height:400px; } }
+
+  /* ===== Tags ===== */
+  .tag-group{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+  .tag{
+    font-family:var(--font-mono);
+    font-size:0.68rem;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    border:1px solid var(--grid);
+    padding:5px 10px;
+    color:var(--text-muted);
+    transition:border-color 160ms ease-out, color 160ms ease-out;
+  }
+  .tag:hover{ border-color:var(--accent); color:var(--accent); }
+
+  /* ===== Career grid ===== */
+  .career-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:var(--unit);
+  }
+  .career-period{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--accent);
+    letter-spacing:0.02em;
+  }
+  .career-role{ font-size:0.95rem; color:var(--text-muted); margin:6px 0 16px; }
+  .career-list{ list-style:none; }
+  .career-list li{
+    font-size:0.92rem;
+    color:var(--text);
+    padding-left:16px;
+    position:relative;
+    margin-bottom:10px;
+    line-height:1.55;
+  }
+  .career-list li::before{
+    content:'—';
+    position:absolute;
+    left:0;
+    color:var(--cross);
+  }
+  @media (max-width:768px){ .career-grid{ grid-template-columns:1fr; } }
+
+  /* ===== Footer ===== */
+  footer{
+    border-top:1px solid var(--grid);
+    padding:56px 0;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:32px;
+  }
+  .footer-name{ font-size:1.1rem; font-weight:600; margin-bottom:6px; }
+  .footer-role{ font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); letter-spacing:0.02em; }
+  .footer-links{ text-align:right; font-family:var(--font-mono); font-size:0.8rem; line-height:2; }
+  .footer-links a{ text-decoration:none; color:var(--text); border-bottom:1px solid var(--grid); transition:border-color 160ms ease-out, color 160ms ease-out; }
+  .footer-links a:hover{ color:var(--accent); border-color:var(--accent); }
+  @media (max-width:640px){ .footer-grid{ align-items:flex-start; } .footer-links{ text-align:left; } }
+
+  /* ===== Scroll reveal ===== */
+  .reveal{ opacity:0; transition:opacity 320ms ease-out; }
+  .reveal.in{ opacity:1; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+    .reveal{ opacity:1 !important; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
+<div class="frame">
+
+  <!-- Nav -->
   <header class="nav-header">
-    <div class="container nav-container">
-      <a href="#" class="nav-logo">SEONGEUN KWACK</a>
+    <div class="inner nav-inner">
+      <a href="#top" class="nav-logo">KWACK_SEONGEUN<span>.</span></a>
       <ul class="nav-links">
-        <li><a href="#about">경력 요약</a></li>
-        <li><a href="#doc-hub">라이브 문서 뷰어</a></li>
-        <li><a href="#projects">프로젝트 경험</a></li>
-        <li><a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" class="nav-chip">Figma 포트폴리오 ↗</a></li>
+        <li><a href="#about">[01] 경력 요약</a></li>
+        <li><a href="#doc-hub">[02] 라이브 문서 뷰어</a></li>
+        <li><a href="#about">[03] 프로젝트 경험</a></li>
+        <li class="nav-cta-item"><a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" rel="noopener" class="nav-cta">FIGMA ↗</a></li>
       </ul>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="section-band band-white">
-    <div class="container" style="padding-top: 40px; padding-bottom: 40px;">
-      <h1 class="hero-h1">시스템과 데이터를 구조화하는<br />6년 차 게임 기획자 & PM</h1>
-      <p class="section-sub" style="max-width: 760px;">
-        수집형 RPG 시스템/밸런스 기획부터 OTT 플랫폼 확장 및 자체등급분류 사업자 지정까지. 작성한 문서와 포트폴리오 덱을 아래 웹화면에서 직접 확인하실 수 있습니다.
-      </p>
-      <div class="btn-group">
-        <a href="#doc-hub" class="btn-primary">라이브 문서 열람하기</a>
-        <a href="https://docs.google.com/document/d/1mFJTZBGa4olAVtSXnejl1DTlNKlcjvB1OBOwi0TqpGE/edit?usp=sharing" target="_blank" class="btn-outline">Google Docs 전체보기 ↗</a>
+  <!-- Hero -->
+  <section id="top" class="section-pad section-divider">
+    <div class="inner">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">INTRO</span>
+          <h1>시스템과 데이터를 구조화하는<br/>6년 차 게임 기획자 &amp; PM</h1>
+          <p class="hero-sub">
+            수집형 RPG 시스템/밸런스 기획부터 OTT 플랫폼 확장 및 자체등급분류 사업자 지정까지.
+            작성한 문서와 포트폴리오 덱을 아래 웹화면에서 직접 확인하실 수 있습니다.
+          </p>
+          <div class="btn-group">
+            <a href="#doc-hub" class="btn btn-primary">라이브 문서 열람하기</a>
+            <a href="https://docs.google.com/document/d/1mFJTZBGa4olAVtSXnejl1DTlNKlcjvB1OBOwi0TqpGE/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline">Google Docs 전체보기 ↗</a>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <span class="index-tag">[ PROFILE // x: 900 / y: 40 ]</span>
+          <div class="hero-panel-grid">
+            <div class="hero-stat">
+              <span class="num">6yr</span>
+              <span class="label">Game Planning &amp; PM</span>
+            </div>
+            <div class="hero-stat">
+              <span class="num">2</span>
+              <span class="label">Track — RPG / OTT</span>
+            </div>
+            <div class="hero-stat">
+              <span class="num">68%</span>
+              <span class="label">AWS 인프라 비용 절감</span>
+            </div>
+            <div class="hero-stat">
+              <span class="num">1st</span>
+              <span class="label">중소기업 최초 자체등급분류</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Live Document Hub -->
-  <section id="doc-hub" class="section-band band-violet">
-    <div class="container">
-      <h2 class="section-title">Live Document Hub</h2>
-      <p class="section-sub">Figma 데크, 역기획서 슬라이드, Google Docs 및 경력기술서를 웹페이지 안에서 직접 열람하세요.</p>
+  <section id="doc-hub" class="section-pad section-divider">
+    <div class="inner">
+      <span class="eyebrow">DOCUMENTS</span>
+      <h2>Live Document Hub</h2>
+      <p class="hero-sub" style="margin-bottom:40px;">Figma 데크, 역기획서 슬라이드, Google Docs 및 경력기술서를 웹페이지 안에서 직접 열람하세요.</p>
 
-      <div class="doc-hub-container">
-        <!-- Document Tabs -->
-        <div class="doc-tabs-nav">
-          <button class="doc-tab-btn active" onclick="switchDocTab('tab-figma', this)">🎨 Figma 포트폴리오 슬라이드</button>
-          <button class="doc-tab-btn" onclick="switchDocTab('tab-warframe', this)">🎮 워프레임 MOD 역기획서 (Google Slides)</button>
-          <button class="doc-tab-btn" onclick="switchDocTab('tab-gdocs', this)">📄 MOA OTT 상세 기획서 (Google Docs)</button>
-          <button class="doc-tab-btn" onclick="switchDocTab('tab-pdf', this)">📋 경력기술서 & 포트폴리오 (PDF)</button>
+      <div class="doc-tabs-nav">
+        <button class="doc-tab-btn active" onclick="switchDocTab('tab-figma', this)"><span class="idx">[01]</span>Figma 포트폴리오 슬라이드</button>
+        <button class="doc-tab-btn" onclick="switchDocTab('tab-warframe', this)"><span class="idx">[02]</span>워프레임 MOD 역기획서</button>
+        <button class="doc-tab-btn" onclick="switchDocTab('tab-gdocs', this)"><span class="idx">[03]</span>MOA OTT 상세 기획서</button>
+        <button class="doc-tab-btn" onclick="switchDocTab('tab-pdf', this)"><span class="idx">[04]</span>경력기술서 &amp; 포트폴리오</button>
+      </div>
+
+      <!-- Tab 1 -->
+      <div id="tab-figma" class="doc-tab-content active">
+        <div class="doc-viewer-header">
+          <div>
+            <h3 class="doc-viewer-title">KSE Concept Portfolio (Figma Deck)</h3>
+            <p class="doc-viewer-desc">게임 기획 및 주요 시스템 컨셉을 담은 Figma 인터랙티브 슬라이드입니다.</p>
+          </div>
+          <a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">Figma에서 크게보기 ↗</a>
         </div>
-
-        <!-- Tab 1: Figma Embed -->
-        <div id="tab-figma" class="doc-tab-content active">
-          <div class="doc-viewer-header">
-            <div>
-              <h3 class="doc-viewer-title">KSE Concept Portfolio (Figma Deck)</h3>
-              <p style="font-size: 14px; color: rgba(51,50,54,0.7);">게임 기획 및 주요 시스템 컨셉을 담은 Figma 인터랙티브 슬라이드입니다.</p>
-            </div>
-            <a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" class="btn-outline" style="height: 38px; font-size: 13px; padding: 4px 16px;">Figma에서 크게보기 ↗</a>
-          </div>
-          <div class="live-embed-frame">
-            <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" allowfullscreen></iframe>
-          </div>
+        <div class="live-embed-frame">
+          <iframe src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" allowfullscreen></iframe>
         </div>
+      </div>
 
-        <!-- Tab 2: Warframe MOD Reverse Engineering (Google Slides Embed) -->
-        <div id="tab-warframe" class="doc-tab-content">
-          <div class="doc-viewer-header">
-            <div>
-              <h3 class="doc-viewer-title">워프레임 MOD 시스템 역기획서 & Wireframe</h3>
-              <p style="font-size: 14px; color: rgba(51,50,54,0.7);">워프레임 모드 시스템 구조화 및 UI 와이어프레임이 정리된 슬라이드 문서입니다.</p>
-            </div>
-            <a href="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/pub?start=false&loop=false&delayms=3000" target="_blank" class="btn-outline" style="height: 38px; font-size: 13px; padding: 4px 16px;">새 창으로 전체보기 ↗</a>
+      <!-- Tab 2 -->
+      <div id="tab-warframe" class="doc-tab-content">
+        <div class="doc-viewer-header">
+          <div>
+            <h3 class="doc-viewer-title">워프레임 MOD 시스템 역기획서 &amp; Wireframe</h3>
+            <p class="doc-viewer-desc">워프레임 모드 시스템 구조화 및 UI 와이어프레임이 정리된 슬라이드 문서입니다.</p>
           </div>
-          <div class="live-embed-frame">
-            <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/embed?start=false&loop=false&delayms=3000" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-          </div>
+          <a href="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">새 창으로 전체보기 ↗</a>
         </div>
-
-        <!-- Tab 3: Google Docs Embed -->
-        <div id="tab-gdocs" class="doc-tab-content">
-          <div class="doc-viewer-header">
-            <div>
-              <h3 class="doc-viewer-title">MOA OTT 서비스 상세 기획 문서</h3>
-              <p style="font-size: 14px; color: rgba(51,50,54,0.7);">TV 앱 기획, 자체등급분류 사업자 규정 대응 및 OVP/AWS 비용 개선 PRD 문서입니다.</p>
-            </div>
-            <a href="https://docs.google.com/document/d/1mFJTZBGa4olAVtSXnejl1DTlNKlcjvB1OBOwi0TqpGE/edit?usp=sharing" target="_blank" class="btn-outline" style="height: 38px; font-size: 13px; padding: 4px 16px;">구글 문서 원본 ↗</a>
-          </div>
-          <div class="live-embed-frame">
-            <iframe src="https://docs.google.com/document/d/1mFJTZBGa4olAVtSXnejl1DTlNKlcjvB1OBOwi0TqpGE/preview"></iframe>
-          </div>
+        <div class="live-embed-frame">
+          <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/embed?start=false&loop=false&delayms=3000" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
         </div>
+      </div>
 
-        <!-- Tab 4: PDF Viewer Embed -->
-        <div id="tab-pdf" class="doc-tab-content">
-          <div class="doc-viewer-header">
-            <div>
-              <h3 class="doc-viewer-title">곽성은 경력기술서 & 포트폴리오 PDF</h3>
-              <p style="font-size: 14px; color: rgba(51,50,54,0.7);">소프트닉스, 위메이드커넥트, SJMNC 등 6년 경력 세부기술서 PDF 원본입니다.</p>
-            </div>
-            <a href="./곽성은_경력기술서.pdf" download class="btn-outline" style="height: 38px; font-size: 13px; padding: 4px 16px;">PDF 다운로드 📥</a>
+      <!-- Tab 3 -->
+      <div id="tab-gdocs" class="doc-tab-content">
+        <div class="doc-viewer-header">
+          <div>
+            <h3 class="doc-viewer-title">MOA OTT 서비스 상세 기획 문서</h3>
+            <p class="doc-viewer-desc">TV 앱 기획, 자체등급분류 사업자 규정 대응 및 OVP/AWS 비용 개선 PRD 문서입니다.</p>
           </div>
-          <div class="live-embed-frame">
-            <iframe src="./곽성은_경력기술서.pdf"></iframe>
-          </div>
+          <a href="https://docs.google.com/document/d/1mFJTZBGa4olAVtSXnejl1DTlNKlcjvB1OBOwi0TqpGE/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">구글 문서 원본 ↗</a>
         </div>
+        <div class="live-embed-frame">
+          <iframe src="https://docs.google.com/document/d/1mFJTZBGa4olAVtSXnejl1DTlNKlcjvB1OBOwi0TqpGE/preview"></iframe>
+        </div>
+      </div>
 
+      <!-- Tab 4 -->
+      <div id="tab-pdf" class="doc-tab-content">
+        <div class="doc-viewer-header">
+          <div>
+            <h3 class="doc-viewer-title">곽성은 경력기술서 &amp; 포트폴리오 PDF</h3>
+            <p class="doc-viewer-desc">소프트닉스, 위메이드커넥트, SJMNC 등 6년 경력 세부기술서 PDF 원본입니다.</p>
+          </div>
+          <a href="./곽성은_경력기술서.pdf" download class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">PDF 다운로드 ↓</a>
+        </div>
+        <div class="live-embed-frame">
+          <iframe src="./곽성은_경력기술서.pdf"></iframe>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Career Overview Section -->
-  <section id="about" class="section-band band-surface">
-    <div class="container">
-      <h2 class="section-title">Career Overview</h2>
-      <p class="section-sub">라이브 서비스 운영과 시스템 구조화를 아우르는 실행 중심 경험</p>
+  <!-- Career Overview -->
+  <section id="about" class="section-pad section-divider">
+    <div class="inner">
+      <span class="eyebrow">CAREER</span>
+      <h2>Career Overview</h2>
+      <p class="hero-sub" style="margin-bottom:40px;">라이브 서비스 운영과 시스템 구조화를 아우르는 실행 중심 경험</p>
 
-      <div class="grid-2">
-        <div class="card-standard">
-          <div>
-            <span style="font-size: 13px; font-weight: 700; color: var(--color-purple);">2024.12 - 2026.04</span>
-            <h3 style="margin-top: 4px;">씨네온티브디 & SJMNC</h3>
-            <p style="font-weight: 500; color: var(--color-ink); margin-bottom: 12px;">OTT 서비스 MOA Platform PM</p>
-            <ul style="padding-left: 20px; font-size: 15px; color: rgba(51,50,54,0.85); line-height: 1.6;">
-              <li>TV향 서비스 기획 및 런칭 (LG, Samsung, AndroidTV)</li>
-              <li>중소기업 최초 2025년 영상물 자체등급분류사업자 지정 추진</li>
-              <li>OVP 이관 및 AWS 인프라 유지비용 구조 개선</li>
-            </ul>
-          </div>
+      <div class="career-grid">
+        <div class="bp-card reveal">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <span class="index-tag">[01]</span>
+          <p class="career-period" style="margin-top:8px;">2024.12 — 2026.04</p>
+          <h3 style="margin-top:6px;">씨네온티브디 &amp; SJMNC</h3>
+          <p class="career-role">OTT 서비스 MOA Platform PM</p>
+          <ul class="career-list">
+            <li>TV향 서비스 기획 및 런칭 (LG, Samsung, AndroidTV)</li>
+            <li>중소기업 최초 2025년 영상물 자체등급분류사업자 지정 추진</li>
+            <li>OVP 이관 및 AWS 인프라 유지비용 구조 개선 (68% 절감)</li>
+          </ul>
           <div class="tag-group">
             <span class="tag">OTT PM</span>
             <span class="tag">자체등급분류</span>
@@ -428,17 +576,17 @@
           </div>
         </div>
 
-        <div class="card-standard">
-          <div>
-            <span style="font-size: 13px; font-weight: 700; color: var(--color-purple);">2018.10 - 2023.05</span>
-            <h3 style="margin-top: 4px;">소프트닉스</h3>
-            <p style="font-weight: 500; color: var(--color-ink); margin-bottom: 12px;">킹덤스토리 시스템 & 콘텐츠 기획</p>
-            <ul style="padding-left: 20px; font-size: 15px; color: rgba(51,50,54,0.85); line-height: 1.6;">
-              <li>무한 PvE 콘텐츠 '선인의 탑' 시스템 기획 및 밸런싱</li>
-              <li>유저 선택형 퀘스트 '현상금' 시스템 설계 및 연계 로직</li>
-              <li>16v16 PVP '총력전' 및 초한/춘추 신규 시나리오 레벨 디자인</li>
-            </ul>
-          </div>
+        <div class="bp-card reveal">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <span class="index-tag">[02]</span>
+          <p class="career-period" style="margin-top:8px;">2018.10 — 2023.05</p>
+          <h3 style="margin-top:6px;">소프트닉스</h3>
+          <p class="career-role">킹덤스토리 시스템 &amp; 콘텐츠 기획</p>
+          <ul class="career-list">
+            <li>무한 PvE 콘텐츠 '선인의 탑' 시스템 기획 및 밸런싱</li>
+            <li>유저 선택형 퀘스트 '현상금' 시스템 설계 및 연계 로직</li>
+            <li>16v16 PVP '총력전' 및 초한/춘추 신규 시나리오 레벨 디자인</li>
+          </ul>
           <div class="tag-group">
             <span class="tag">수집형 RPG</span>
             <span class="tag">PvE/PvP</span>
@@ -450,31 +598,39 @@
   </section>
 
   <!-- Footer -->
-  <footer class="section-band band-night">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+  <footer>
+    <div class="inner footer-grid">
       <div>
-        <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #ffffff;">곽성은 | Seongeun Kwack</h3>
-        <p style="color: rgba(255,255,255,0.7); font-size: 14px;">Game Planner & Product Owner / Project Manager</p>
+        <p class="footer-name">곽성은 | Seongeun Kwack</p>
+        <p class="footer-role">GAME PLANNER &amp; PRODUCT OWNER / PROJECT MANAGER</p>
       </div>
-      <div style="text-align: right; font-size: 14px; line-height: 1.8;">
-        <p>Email: <a href="mailto:kwaksu91@gmail.com">kwaksu91@gmail.com</a></p>
-        <p>GitHub: <a href="https://seongeun-kwack.github.io/" target="_blank">seongeun-kwack.github.io</a></p>
+      <div class="footer-links">
+        <p>EMAIL — <a href="mailto:kwaksu91@gmail.com">kwaksu91@gmail.com</a></p>
+        <p>SITE — <a href="https://seongeun-kwack.github.io/" target="_blank" rel="noopener">seongeun-kwack.github.io</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- Tab Switch Script -->
-  <script>
-    function switchDocTab(tabId, btnElement) {
-      const contents = document.querySelectorAll('.doc-tab-content');
-      contents.forEach(content => content.classList.remove('active'));
+</div>
 
-      const buttons = document.querySelectorAll('.doc-tab-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
+<script>
+  function switchDocTab(tabId, btnElement){
+    document.querySelectorAll('.doc-tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.doc-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btnElement.classList.add('active');
+  }
 
-      document.getElementById(tabId).classList.add('active');
-      btnElement.classList.add('active');
-    }
-  </script>
+  // Scroll reveal
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
 </body>
 </html>
