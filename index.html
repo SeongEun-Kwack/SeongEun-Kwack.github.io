@@ -347,7 +347,7 @@ position:relative;
 @media (max-width:1024px){ .live-embed-frame{ height:480px; } }
 @media (max-width:640px){ .live-embed-frame{ height:400px; } }
 
-/* ===== Screenshot Slideshow (CSS @keyframes, 11 slides / 55s loop, shuffled via JS on load) ===== */
+/* ===== Screenshot Slideshow ===== */
 .shot-viewer{
 position:relative;
 width:100%;
@@ -375,7 +375,6 @@ flex-direction:column;
 opacity:0;
 animation:shotFade 55s infinite;
 }
-/* 이미지 순서는 JS가 로드 시 셔플 — 딜레이는 DOM 위치(1~11번째) 기준으로 균등 배분됨 */
 .shot-track .shot-slide:nth-child(1){ animation-delay:0s; }
 .shot-track .shot-slide:nth-child(2){ animation-delay:5s; }
 .shot-track .shot-slide:nth-child(3){ animation-delay:10s; }
@@ -416,7 +415,6 @@ background-color:var(--surface);
 
 .shot-viewer:hover .shot-slide{ animation-play-state:paused; }
 
-/* 11장 · 55s 루프 · 슬롯 9.09% (0.5s 페이드인/아웃) */
 @keyframes shotFade{
 0%     { opacity:0; }
 0.91%  { opacity:1; }
@@ -471,16 +469,15 @@ color:var(--cross);
 }
 @media (max-width:768px){ .career-grid{ grid-template-columns:1fr; } }
 
-  .recent-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--unit); }
-  @media (max-width:768px){ .recent-grid{ grid-template-columns:1fr; } }
-  .recent-media-wrap{
-    width:100%; aspect-ratio:16/9; border:1px solid var(--grid);
-    background-color:var(--surface); overflow:hidden; margin-top:16px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .recent-media-wrap iframe{ width:100%; height:100%; border:0; }
-  .recent-media-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform 300ms ease-out; }
-  .bp-card:hover .recent-media-wrap img{ transform:scale(1.02); }
+.recent-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--unit); }
+@media (max-width:768px){ .recent-grid{ grid-template-columns:1fr; } }
+.recent-media-wrap{
+width:100%; aspect-ratio:16/9; border:1px solid var(--grid);
+background-color:var(--surface); overflow:hidden; margin-top:16px;
+display:flex; align-items:center; justify-content:center;
+}
+.recent-media-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform 300ms ease-out; }
+.bp-card:hover .recent-media-wrap img{ transform:scale(1.02); }
 
 
 /* ===== Footer ===== */
@@ -818,49 +815,51 @@ padding-left: 0 !important;
 </p>
 
 <div class="recent-grid">
-<article class="bp-card">
-<span class="corner tl"></span><span class="corner tr"></span>
-<span class="corner bl"></span><span class="corner br"></span>
-
-<span class="index-tag">[00] Log </span>
-<h3 style="margin-top:12px;">Un.</h3>
-
-<div class="recent-video">
-<iframe
-            src="https://youtu.be/dsxorL9Upec"
-title="C++ 기반 UE5"
-loading="lazy"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-referrerpolicy="strict-origin-when-cross-origin"
-allowfullscreen>
-</iframe>
-</div>
-
-<a
-href="https://youtu.be/dsxorL9Upec"
-target="_blank"
-rel="noopener noreferrer"
-class="btn btn-outline"
-style="height:38px;font-size:0.7rem;padding:0 16px;margin-top:20px;"
->YouTube에서 보기 ↗</a>
-</article>
-
-
+  <!-- 01. UE5 C++/Blueprint 공부 카드 -->
   <article class="bp-card">
-     <span class="corner tl"></span><span class="corner tr"></span>
-       <span class="corner bl"></span><span class="corner br"></span>
-        <span class="index-tag">[01] Puzzle</span>
-          <h3 style="margin-top:12px;">dokupuzzle — 추리 퍼즐 프로토타입</h3>
-          <div class="recent-media-wrap">
-          <img src="./image_5edb7b.jpg" alt="clikc to Game Play" />
-        </div>
-        <a href="https://sherlockdoku.ai.studio/" target="_blank" rel="noopener noreferrer"
-           class="btn btn-outline"
-           style="height:38px;font-size:0.7rem;padding:0 16px;margin-top:20px;">플레이하기 ↗</a>
-      </article>
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
 
+    <span class="index-tag">[00] Log </span>
+    <h3 style="margin-top:12px;">최근 작업 - 역량 및 이해도를 위해 UE5(C++/Blueprint)을 공부중입니다.</h3>
 
+    <div class="recent-media-wrap">
+      <a href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
+        <img src="./ue5_project.jpg" alt="UE5 Project 썸네일" />
+      </a>
+    </div>
 
+    <a
+      href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-outline"
+      style="height:38px;font-size:0.7rem;padding:0 16px;margin-top:20px;"
+    >YouTube에서 보기 ↗</a>
+  </article>
+
+  <!-- 02. dokupuzzle 프로젝트 카드 -->
+  <article class="bp-card">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+
+    <span class="index-tag">[01] Puzzle</span>
+    <h3 style="margin-top:12px;">dokupuzzle — 추리 퍼즐 프로토타입</h3>
+
+    <div class="recent-media-wrap">
+      <a href="https://sherlockdoku.ai.studio/" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
+        <img src="./image_5edb7b.jpg" alt="dokupuzzle 썸네일" />
+      </a>
+    </div>
+
+    <a
+      href="https://sherlockdoku.ai.studio/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-outline"
+      style="height:38px;font-size:0.7rem;padding:0 16px;margin-top:20px;"
+    >플레이하기 ↗</a>
+  </article>
 </div>
 </div>
 </section>
