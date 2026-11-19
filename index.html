@@ -7,9 +7,11 @@
 <meta name="description" content="곽성은 포트폴리오 문서" />
 <script>document.documentElement.classList.add('js');</script>
 
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 /* ===== Blueprint Grid — Design Tokens ===== */
@@ -24,8 +26,18 @@
 --accent:#e5484d;
 --accent-text:#c93a3e;
 --accent-strong:#b0302f;
---font-display:'IBM Plex Sans', Inter, sans-serif;
---font-mono:'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+--font-sans:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+--font-mono:'JetBrains Mono', "Pretendard Variable", Pretendard, ui-monospace, SFMono-Regular, Menlo, monospace;
+/* Type scale (rem) — nothing below 12px */
+--fs-label:0.75rem;      /* 12px mono labels: tags, captions, periods, stat label */
+--fs-label-lg:0.8125rem; /* 13px mono controls: nav, tabs, buttons, toast */
+--fs-small:0.9375rem;    /* 15px sans: descriptions, career lists */
+--fs-body:1rem;          /* 16px sans body */
+--fs-lead:1.125rem;      /* 18px hero intro */
+--fs-title:1.25rem;      /* 20px card / viewer / footer titles */
+--fs-stat:1.5rem;        /* 24px mono stat numerals */
+--fs-headline:clamp(1.625rem, 2.8vw, 2.3rem);
+--fs-display:clamp(2.4rem, 5vw, 4.2rem);
 --unit:24px;
 --content-max:1200px;
 }
@@ -40,9 +52,11 @@ background-image:
 radial-gradient(circle, var(--grid) 1px, transparent 1px);
 background-size: var(--unit) var(--unit);
 color:var(--text);
-font-family:var(--font-display);
-font-size:16px;
-line-height:1.6;
+font-family:var(--font-sans);
+font-size:var(--fs-body);
+line-height:1.7;
+word-break:keep-all;
+overflow-wrap:break-word;
 -webkit-font-smoothing:antialiased;
 }
 
@@ -70,7 +84,7 @@ border-top:1px solid var(--grid);
 /* ===== Eyebrow / Mono labels ===== */
 .eyebrow{
 font-family:var(--font-mono);
-font-size:0.75rem;
+font-size:var(--fs-label);
 font-weight:500;
 letter-spacing:0.04em;
 text-transform:uppercase;
@@ -84,42 +98,45 @@ margin-bottom:16px;
 
 .index-tag{
 font-family:var(--font-mono);
-font-size:0.75rem;
+font-size:var(--fs-label);
 color:var(--text-muted);
 letter-spacing:0.02em;
 }
 
 .coord{
 font-family:var(--font-mono);
-font-size:0.7rem;
+font-size:var(--fs-label);
 color:var(--text-muted);
 letter-spacing:0.01em;
 }
 
 /* ===== Typography ===== */
 h1{
-font-size:clamp(2.4rem, 5vw, 4.2rem);
-font-weight:600;
-letter-spacing:-0.02em;
-line-height:1.08;
+font-size:var(--fs-display);
+font-weight:700;
+letter-spacing:-0.03em;
+line-height:1.18;
 }
 h2{
-font-size:clamp(1.6rem, 2.8vw, 2.3rem);
-font-weight:600;
-line-height:1.15;
-letter-spacing:-0.01em;
+font-size:var(--fs-headline);
+font-weight:700;
+line-height:1.3;
+letter-spacing:-0.03em;
 }
 .hero-tagline{
-font-size:clamp(1.6rem, 2.8vw, 2.3rem);
-font-weight:600;
-line-height:1.15;
-letter-spacing:-0.01em;
+font-size:var(--fs-headline);
+font-weight:700;
+line-height:1.3;
+letter-spacing:-0.03em;
 }
 h3{
-font-size:1.15rem;
+font-size:var(--fs-title);
 font-weight:600;
-letter-spacing:-0.01em;
+line-height:1.4;
+letter-spacing:-0.02em;
 }
+h1, h2, h3, .hero-tagline{ text-wrap:balance; }
+p, li{ text-wrap:pretty; }
 p{ color:var(--text); }
 .muted{ color:var(--text-muted); }
 
@@ -140,7 +157,7 @@ height:64px;
 }
 .nav-logo{
 font-family:var(--font-mono);
-font-size:0.85rem;
+font-size:var(--fs-label-lg);
 font-weight:600;
 letter-spacing:0.02em;
 text-decoration:none;
@@ -155,7 +172,7 @@ list-style:none;
 }
 .nav-links a{
 font-family:var(--font-mono);
-font-size:0.72rem;
+font-size:var(--fs-label-lg);
 font-weight:500;
 letter-spacing:0.03em;
 text-transform:uppercase;
@@ -166,7 +183,7 @@ transition:color 160ms ease-out;
 .nav-links a:hover{ color:var(--accent-text); }
 .nav-cta{
 font-family:var(--font-mono);
-font-size:0.72rem;
+font-size:var(--fs-label-lg);
 font-weight:500;
 letter-spacing:0.03em;
 text-transform:uppercase;
@@ -192,7 +209,7 @@ background-color:var(--accent-strong);
 /* ===== Buttons ===== */
 .btn{
 font-family:var(--font-mono);
-font-size:0.8rem;
+font-size:var(--fs-label-lg);
 font-weight:500;
 letter-spacing:0.03em;
 text-transform:uppercase;
@@ -268,9 +285,10 @@ gap:var(--unit);
 align-items:start;
 }
 .hero-sub{
-font-size:1.05rem;
+font-size:var(--fs-lead);
+line-height:1.75;
 color:var(--text-muted);
-max-width:56ch;
+max-width:40em;
 margin:20px 0 40px;
 }
 .hero-panel{
@@ -294,14 +312,14 @@ padding:20px 16px;
 }
 .hero-stat .num{
 font-family:var(--font-mono);
-font-size:1.6rem;
+font-size:var(--fs-stat);
 font-weight:600;
 color:var(--accent-text);
 display:block;
 }
 .hero-stat .label{
 font-family:var(--font-mono);
-font-size:0.68rem;
+font-size:var(--fs-label);
 color:var(--text-muted);
 text-transform:uppercase;
 letter-spacing:0.03em;
@@ -321,7 +339,7 @@ margin-bottom:32px;
 }
 .doc-tab-btn{
 font-family:var(--font-mono);
-font-size:0.72rem;
+font-size:var(--fs-label-lg);
 font-weight:500;
 letter-spacing:0.02em;
 text-transform:uppercase;
@@ -352,7 +370,7 @@ flex-wrap:wrap;
 margin-bottom:16px;
 }
 .doc-viewer-title{ margin-bottom:6px; }
-.doc-viewer-desc{ font-size:0.9rem; color:var(--text-muted); max-width:60ch; }
+.doc-viewer-desc{ font-size:var(--fs-small); color:var(--text-muted); max-width:40em; }
 
 .live-embed-frame{
 width:100%;
@@ -423,7 +441,7 @@ background-color:var(--surface);
 }
 .shot-caption{
 font-family:var(--font-mono);
-font-size:0.75rem;
+font-size:var(--fs-label);
 color:var(--text-muted);
 text-align:center;
 padding:10px 16px;
@@ -440,7 +458,7 @@ position:absolute;
 top:16px; right:16px;
 z-index:2;
 font-family:var(--font-mono);
-font-size:0.75rem;
+font-size:var(--fs-label);
 letter-spacing:0.02em;
 color:var(--text);
 background-color:var(--surface);
@@ -471,7 +489,7 @@ transition:border-color 160ms ease-out, color 160ms ease-out;
 .tag-group{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
 .tag{
 font-family:var(--font-mono);
-font-size:0.68rem;
+font-size:var(--fs-label);
 letter-spacing:0.02em;
 text-transform:uppercase;
 border:1px solid var(--grid);
@@ -489,19 +507,19 @@ gap:var(--unit);
 }
 .career-period{
 font-family:var(--font-mono);
-font-size:0.75rem;
+font-size:var(--fs-label);
 color:var(--accent-text);
 letter-spacing:0.02em;
 }
-.career-role{ font-size:0.95rem; color:var(--text-muted); margin:6px 0 16px; }
+.career-role{ font-size:var(--fs-small); color:var(--text-muted); margin:6px 0 16px; }
 .career-list{ list-style:none; }
 .career-list li{
-font-size:0.92rem;
+font-size:var(--fs-small);
 color:var(--text);
 padding-left:16px;
 position:relative;
 margin-bottom:10px;
-line-height:1.55;
+line-height:1.65;
 }
 .career-list li::before{
 content:'—';
@@ -534,9 +552,9 @@ align-items:flex-end;
 flex-wrap:wrap;
 gap:32px;
 }
-.footer-name{ font-size:1.1rem; font-weight:600; margin-bottom:6px; }
-.footer-role{ font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); letter-spacing:0.02em; }
-.footer-links{ text-align:right; font-family:var(--font-mono); font-size:0.8rem; line-height:2; }
+.footer-name{ font-size:var(--fs-title); font-weight:600; margin-bottom:6px; }
+.footer-role{ font-family:var(--font-mono); font-size:var(--fs-label); color:var(--text-muted); letter-spacing:0.02em; }
+.footer-links{ text-align:right; font-family:var(--font-mono); font-size:var(--fs-label-lg); line-height:2; }
 .footer-links a{ text-decoration:none; color:var(--text); border-bottom:1px solid var(--grid); transition:border-color 160ms ease-out, color 160ms ease-out; }
 .footer-links a:hover{ color:var(--accent-text); border-color:var(--accent); }
 @media (max-width:640px){ .footer-grid{ align-items:flex-start; } .footer-links{ text-align:left; } }
@@ -570,7 +588,7 @@ right: 24px;
 background-color: var(--text);
 color: #ffffff;
 font-family: var(--font-mono);
-font-size: 0.78rem;
+font-size: var(--fs-label-lg);
 letter-spacing: 0.02em;
 padding: 12px 20px;
 border-left: 3px solid var(--accent);
@@ -723,7 +741,7 @@ padding-left: 0 !important;
 <h3 class="doc-viewer-title">곽성은 경력기술서 PDF</h3>
 <p class="doc-viewer-desc">소프트닉스, NT게임즈/위메이드커넥트, SJMNC 등 6년 경력 세부기술서 PDF 원본입니다.</p>
 </div>
-<a href="./kwak_seongeun_resume.pdf" download class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">PDF 다운로드 ↓</a>
+<a href="./kwak_seongeun_resume.pdf" download class="btn btn-outline" style="height:38px;font-size:var(--fs-label);padding:0 16px;">PDF 다운로드 ↓</a>
 </div>
 <div class="live-embed-frame">
 <object data="./kwak_seongeun_resume.pdf" type="application/pdf" width="100%" height="100%">
@@ -739,7 +757,7 @@ padding-left: 0 !important;
 <h3 class="doc-viewer-title">워프레임 MOD 시스템 역기획서: System</h3>
 <p class="doc-viewer-desc">워프레임 모드 시스템 구조화 내용을 역기획한 내용입니다.</p>
 </div>
-<a href="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">구글 문서 원본 ↗</a>
+<a href="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:var(--fs-label);padding:0 16px;">구글 문서 원본 ↗</a>
 </div>
 <div class="live-embed-frame">
 <object data="./warframe_mod_system.pdf" type="application/pdf" width="100%" height="100%">
@@ -755,7 +773,7 @@ padding-left: 0 !important;
 <h3 class="doc-viewer-title">워프레임 MOD 시스템 역기획서: Wireframe</h3>
 <p class="doc-viewer-desc">워프레임 모드 관련 와이어프레임을 작성한 내용입니다.</p>
 </div>
-<a href="https://docs.google.com/presentation/d/1rVWGDLXLuIs9UPz8qE8wBjl8mFEIEiUfMEpwmhFIc9A/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">구글 문서 원본 ↗</a>
+<a href="https://docs.google.com/presentation/d/1rVWGDLXLuIs9UPz8qE8wBjl8mFEIEiUfMEpwmhFIc9A/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:var(--fs-label);padding:0 16px;">구글 문서 원본 ↗</a>
 </div>
 <div class="live-embed-frame">
 <object data="./warframe_mod_ui.pdf" type="application/pdf" width="100%" height="100%">
@@ -771,7 +789,7 @@ padding-left: 0 !important;
 <h3 class="doc-viewer-title">보스 컨셉 기획서</h3>
 <p class="doc-viewer-desc">영화 '콘스탄틴' 테마의 보스 컨셉을 작성한 Figma 슬라이드입니다.</p>
 </div>
-<a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">Figma에서 크게보기 ↗</a>
+<a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:var(--fs-label);padding:0 16px;">Figma에서 크게보기 ↗</a>
 </div>
 <div class="live-embed-frame">
 <object data="./KSE_concept_portfolio.pdf" type="application/pdf" width="100%" height="100%">
@@ -887,7 +905,7 @@ padding-left: 0 !important;
       target="_blank"
       rel="noopener noreferrer"
       class="btn btn-outline"
-      style="height:38px;font-size:0.7rem;padding:0 16px;margin-top:20px;"
+      style="height:38px;font-size:var(--fs-label);padding:0 16px;margin-top:20px;"
     >YouTube에서 보기 ↗</a>
   </article>
 </div>

@@ -13,31 +13,33 @@ colors:
   crosshair: "#c2c2c2"
 typography:
   display:
-    fontFamily: "IBM Plex Sans, Inter, sans-serif"
+    fontFamily: "Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Noto Sans KR, sans-serif"
     fontSize: "clamp(2.4rem, 5vw, 4.2rem)"
-    fontWeight: 600
-    lineHeight: 1.08
-    letterSpacing: "-0.02em"
+    fontWeight: 700
+    lineHeight: 1.18
+    letterSpacing: "-0.03em"
   headline:
-    fontFamily: "IBM Plex Sans, Inter, sans-serif"
-    fontSize: "clamp(1.6rem, 2.8vw, 2.3rem)"
-    fontWeight: 600
-    lineHeight: 1.15
-    letterSpacing: "-0.01em"
+    fontFamily: "Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Noto Sans KR, sans-serif"
+    fontSize: "clamp(1.625rem, 2.8vw, 2.3rem)"
+    fontWeight: 700
+    lineHeight: 1.3
+    letterSpacing: "-0.03em"
   title:
-    fontFamily: "IBM Plex Sans, Inter, sans-serif"
-    fontSize: "1.15rem"
+    fontFamily: "Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Noto Sans KR, sans-serif"
+    fontSize: "1.25rem"
     fontWeight: 600
-    letterSpacing: "-0.01em"
+    lineHeight: 1.4
+    letterSpacing: "-0.02em"
   body:
-    fontFamily: "IBM Plex Sans, Inter, sans-serif"
-    fontSize: "16px"
+    fontFamily: "Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Noto Sans KR, sans-serif"
+    fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.6
+    lineHeight: 1.7
   label:
-    fontFamily: "JetBrains Mono, IBM Plex Mono, ui-monospace, monospace"
+    fontFamily: "JetBrains Mono, Pretendard Variable, Pretendard, ui-monospace, monospace"
     fontSize: "0.75rem"
     fontWeight: 500
+    lineHeight: 1.6
     letterSpacing: "0.04em"
 rounded:
   none: "0px"
@@ -131,22 +133,31 @@ components:
 
 ## Typography
 
-**Display Font:** IBM Plex Sans (with Inter, sans-serif)
-**Body Font:** IBM Plex Sans (with Inter, sans-serif)
-**Label/Mono Font:** JetBrains Mono (with IBM Plex Mono, ui-monospace)
+**Display Font:** Pretendard Variable (with Pretendard, -apple-system, system-ui, Apple SD Gothic Neo, Noto Sans KR, sans-serif)
+**Body Font:** Pretendard Variable (같은 스택)
+**Label/Mono Font:** JetBrains Mono (한글 글리프는 Pretendard로 이어받음, ui-monospace 폴백)
 
-**Character:** 엔지니어링 문서 느낌의 산세리프에 코드 에디터 느낌의 모노를 짝지었다. 본문은 사람이, 라벨은 시스템이 쓴 것처럼 보인다.
+**Character:** 한국어 우선의 단일 산세리프 Pretendard 하나로 제목과 본문을 모두 맡기고, 코드 에디터 느낌의 모노를 라벨에만 짝지었다. 본문은 사람이, 라벨은 시스템이 쓴 것처럼 보인다. Pretendard는 한글과 라틴을 한 서체로 함께 그려서 한국어 제목 안의 영문("PM", "Document Hub")도 같은 결로 이어진다. jsdelivr의 dynamic-subset CSS로 불러오며, 실패하면 OS 산세리프로 대체된다.
 
-IBM Plex Sans는 한글 글리프가 없어서, 한국어 본문과 제목은 시스템 산세리프(맑은 고딕, Apple SD Gothic Neo 등)로 렌더링된다. 한국어가 주 콘텐츠이므로 실제로 보이는 한글 서체는 OS에 따라 달라진다.
+한국어 조판 규칙: 본문과 제목에 `word-break: keep-all`을 걸어 어절 중간에서 줄이 끊기지 않게 하고(긴 URL을 위해 `overflow-wrap: break-word`), 제목은 `text-wrap: balance`, 문단과 리스트는 `text-wrap: pretty`로 맞춘다. 한글은 라틴보다 자간을 좁게(-0.03em), 행간은 넓게(제목 1.18–1.3, 본문 1.7) 잡는다.
 
 ### Hierarchy
-- **Display** (600, clamp 2.4–4.2rem, 1.08): 히어로 직함("게임 기획자 & PM") 전용.
-- **Headline** (600, clamp 1.6–2.3rem, 1.15): 섹션 제목 (Document Hub, 최근/대표 이력, 최근 작업).
-- **Title** (600, 1.15rem): 카드 제목, 문서 뷰어 제목.
-- **Body** (400, 16px, 1.6): 본문. 히어로 소개는 1.05rem·56ch, 문서 설명은 0.9rem·60ch, 경력 리스트는 0.92rem·1.55.
-- **Label** (500, 0.68–0.8rem, 0.02–0.04em, 대문자): eyebrow, 내비게이션, 버튼, 탭, 태그, 기간, 캡션, 스탯 라벨. 스탯 숫자는 같은 모노체로 1.6rem·600·Signal Red.
+크기는 `:root`의 `--fs-*` 토큰 9단계만 쓴다. 리터럴 rem 값이나 인라인 font-size는 쓰지 않는다.
+- **Display** `--fs-display` (700, clamp 2.4–4.2rem, 1.18, -0.03em): 히어로 직함("게임 기획자 & PM") 전용.
+- **Headline** `--fs-headline` (700, clamp 1.625–2.3rem, 1.3, -0.03em): 섹션 제목과 히어로 태그라인.
+- **Title** `--fs-title` (600, 1.25rem, 1.4, -0.02em): 카드 제목, 문서 뷰어 제목, 푸터 이름.
+- **Lead** `--fs-lead` (400, 1.125rem, 1.75, 최대 40em): 히어로 소개.
+- **Body** `--fs-body` (400, 1rem, 1.7): 기본 본문.
+- **Small** `--fs-small` (400, 0.9375rem, 1.65): 문서 설명(40em), 경력 역할과 리스트.
+- **Label Large** `--fs-label-lg` (500, 0.8125rem, 0.02–0.03em, 모노): 내비게이션, 탭, 버튼, 푸터 링크, 토스트, 로고.
+- **Label** `--fs-label` (500, 0.75rem, 0.02–0.04em, 모노, 대문자): eyebrow, 태그, 기간, 캡션, 좌표, 스탯 라벨, compact 버튼.
+- **Stat** `--fs-stat` (600, 1.5rem, 모노, Signal Red): 스탯 숫자.
 
 ### Named Rules
+**The 12px Floor Rule.** 화면에 보이는 글자는 0.75rem(12px) 아래로 내려가지 않는다. 라벨을 조용하게 만들고 싶으면 크기를 줄이지 말고 Graphite 색, 가는 자간, 대문자 모노로 낮춘다.
+
+**The Token Scale Rule.** 글자 크기는 `--fs-*` 토큰으로만 지정한다. 새 크기가 필요하면 값을 직접 쓰지 말고 기존 단계 중에서 고른다.
+
 **The Margin Note Rule.** 인덱스, 기간, 분류, 동작 이름처럼 시스템이 매기는 정보는 모노 대문자로 쓴다. 문장과 설명은 산세리프로 쓴다. 이 둘을 섞지 않는다.
 
 ## Layout
@@ -182,11 +193,11 @@ IBM Plex Sans는 한글 글리프가 없어서, 한국어 본문과 제목은 �
 - **Primary:** Signal Red Deep 배경 + 흰 텍스트, 좌우 28px. 페이지당 1–2개만 (예: "라이브 문서 열람하기").
 - **Hover:** 배경이 Signal Red Strong으로 바뀜, 160ms ease-out.
 - **Focus:** 모든 링크·버튼·탭에 2px Signal Red 외곽선, 2px 간격, 직각.
-- **Outline:** 투명 배경 + Ink 테두리·텍스트. hover 시 테두리와 텍스트가 Signal Red로 바뀜. 문서 액션("PDF 다운로드 ↓", "구글 문서 원본 ↗")에 쓰며, 이때는 38px 높이·0.7rem의 compact 변형.
+- **Outline:** 투명 배경 + Ink 테두리·텍스트. hover 시 테두리와 텍스트가 Signal Red로 바뀜. 문서 액션("PDF 다운로드 ↓", "구글 문서 원본 ↗")에 쓰며, 이때는 38px 높이·0.75rem의 compact 변형.
 - **Group:** 버튼 간격 16px, 줄바꿈 허용.
 
 ### Chips (Tags)
-- **Style:** 투명 배경, `grid-line` 1px 테두리, Graphite 모노 대문자 0.68rem, 패딩 5px 10px, 간격 8px.
+- **Style:** 투명 배경, `grid-line` 1px 테두리, Graphite 모노 대문자 0.75rem, 패딩 5px 10px, 간격 8px.
 - **State:** hover 시 테두리·텍스트가 Signal Red로 바뀜. 선택 상태는 없음 (분류 표시 전용).
 
 ### Cards / Containers (Blueprint Card)
@@ -198,12 +209,12 @@ IBM Plex Sans는 한글 글리프가 없어서, 한국어 본문과 제목은 �
 - 카드 안 미디어(16:9)는 hover 시 1.02배 확대 (300ms).
 
 ### Navigation
-- **Style:** 왼쪽에 모노 로고 `KWACK_SEONGEUN.` (마침표만 Signal Red), 오른쪽에 `[01] INTRO` 형식의 모노 대문자 0.72rem 링크(간격 28px).
+- **Style:** 왼쪽에 모노 로고 `KWACK_SEONGEUN.` (마침표만 Signal Red), 오른쪽에 `[01] INTRO` 형식의 모노 대문자 0.8125rem 링크(간격 28px).
 - **States:** 기본 Graphite, hover Signal Red. CTA("EMAIL ✉")는 Ink 1px 테두리 박스이고, hover 시 Signal Red로 채워지며 텍스트는 흰색.
 - **Mobile (≤768px):** 섹션 링크를 숨기고 CTA만 남긴다.
 
 ### Document Tabs
-- **Style:** 모노 대문자 0.72rem 텍스트 탭, 배경 없음. 탭 바 아래 `grid-line` 1px. 인덱스 `[01]`은 Signal Red.
+- **Style:** 모노 대문자 0.8125rem 텍스트 탭, 배경 없음. 탭 바 아래 `grid-line` 1px. 인덱스 `[01]`은 Signal Red.
 - **States:** 기본 Graphite, hover Ink, 활성 Ink + Signal Red 2px 밑줄.
 - 탭 아래에는 제목/설명/액션 헤더와 임베드 프레임(1px 테두리, 640 → 480 → 400px)이 온다.
 
@@ -214,7 +225,7 @@ IBM Plex Sans는 한글 글리프가 없어서, 한국어 본문과 제목은 �
 모노 Signal Red 기간(`2024.12 — 2026.04`) → Title 회사명 → Graphite 역할 → `—` 불릿 리스트 → 태그 그룹. 리스트 항목의 세부 설명은 `//` 접두로 한 줄 내려 쓴다.
 
 ### Toast
-화면 오른쪽 아래 24px. Ink 배경, 흰 모노 0.78rem, 왼쪽에 3px Signal Red 띠. 아래에서 12px 올라오며 200ms에 나타난다.
+화면 오른쪽 아래 24px. Ink 배경, 흰 모노 0.8125rem, 왼쪽에 3px Signal Red 띠. 아래에서 12px 올라오며 200ms에 나타난다.
 
 ## Do's and Don'ts
 
