@@ -593,8 +593,29 @@ color:var(--cross);
 }
 @media (max-width:768px){ .career-grid{ grid-template-columns:1fr; } }
 
-.recent-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--unit); }
-@media (max-width:768px){ .recent-grid{ grid-template-columns:1fr; } }
+.recent-grid{ display:grid; grid-template-columns:1fr; gap:var(--unit); }
+.recent-card{
+display:grid;
+grid-template-columns:11fr 9fr;
+grid-template-rows:1fr auto auto auto 1fr;
+column-gap:48px;
+align-items:start;
+}
+.recent-card .recent-media-wrap{ grid-column:1; grid-row:1 / -1; margin-top:0; }
+.recent-card .index-tag{ grid-column:2; grid-row:2; justify-self:start; }
+.recent-card h3{ grid-column:2; grid-row:3; margin-top:12px; font-size:var(--fs-headline); line-height:1.3; letter-spacing:-0.03em; }
+.recent-card .recent-cta{ grid-column:2; grid-row:4; justify-self:start; margin-top:24px; height:38px; font-size:var(--fs-label); padding:0 16px; }
+@media (max-width:768px){
+.recent-card{ grid-template-columns:1fr; grid-template-rows:none; column-gap:0; }
+.recent-card .recent-media-wrap,
+.recent-card .index-tag,
+.recent-card h3,
+
+.recent-card .index-tag{ order:1; }
+.recent-card h3{ order:2; font-size:var(--fs-title); letter-spacing:-0.02em; }
+.recent-card .recent-media-wrap{ order:3; margin-top:16px; }
+.recent-card .recent-cta{ order:4; margin-top:20px; height:44px; }
+}
 .recent-media-wrap{
 width:100%; aspect-ratio:16/9; border:1px solid var(--grid);
 background-color:var(--surface); overflow:hidden; margin-top:16px;
@@ -603,6 +624,37 @@ display:flex; align-items:center; justify-content:center;
 .recent-media-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform 300ms ease-out; }
 .bp-card:hover .recent-media-wrap img{ transform:scale(1.02); }
 
+/* ===== Contact close ===== */
+.contact-card{
+display:grid;
+grid-template-columns:1fr auto;
+gap:32px 48px;
+align-items:end;
+padding:48px 32px;
+}
+.contact-title{ margin-bottom:20px; }
+.contact-email{
+display:inline-block;
+font-family:var(--font-mono);
+font-size:var(--fs-title);
+font-weight:500;
+letter-spacing:0.01em;
+color:var(--text);
+text-decoration:none;
+border-bottom:1px solid var(--grid);
+padding-bottom:4px;
+overflow-wrap:anywhere;
+transition:color 160ms ease-out, border-color 160ms ease-out;
+}
+.contact-email:hover{ color:var(--accent-text); border-color:var(--accent); }
+.contact-actions{ flex-wrap:wrap; justify-content:flex-end; }
+@media (max-width:900px){
+.contact-card{ grid-template-columns:1fr; align-items:start; padding:32px 24px; }
+.contact-actions{ justify-content:flex-start; }
+}
+@media (max-width:480px){
+.contact-actions .btn{ flex:1 1 100%; }
+}
 
 /* ===== Footer ===== */
 footer{
@@ -952,14 +1004,14 @@ transform: translateY(0);
 엔진 스터디 및 테크니컬 역량 확장을 위해 진행한 개인 작업입니다.
 </p>
 
-<div class="recent-grid" style="grid-template-columns: 1fr; max-width: 720px;">
+<div class="recent-grid">
   <!-- UE5 C++/Blueprint 프로젝트 카드 -->
-  <article class="bp-card">
+  <article class="bp-card recent-card">
     <span class="corner tl"></span><span class="corner tr"></span>
     <span class="corner bl"></span><span class="corner br"></span>
 
     <span class="index-tag">[01] Study &amp; Prototype</span>
-    <h3 style="margin-top:12px;">UE5(C++/Blueprint) FPS Prototype</h3>
+    <h3>UE5(C++/Blueprint) FPS Prototype</h3>
 
     <div class="recent-media-wrap">
       <a href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
@@ -971,10 +1023,28 @@ transform: translateY(0);
       href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9"
       target="_blank"
       rel="noopener noreferrer"
-      class="btn btn-outline"
-      style="height:38px;font-size:var(--fs-label);padding:0 16px;margin-top:20px;"
+      class="btn btn-outline recent-cta"
     >YouTube에서 보기 ↗</a>
   </article>
+</div>
+</div>
+</section>
+
+<!-- Contact Close -->
+<section id="contact" class="section-pad section-divider">
+<div class="inner">
+<div class="bp-card contact-card">
+  <span class="corner tl"></span><span class="corner tr"></span>
+  <span class="corner bl"></span><span class="corner br"></span>
+  <div>
+    <h2 class="contact-title">함께 이야기 나눠요</h2>
+    <a class="contact-email" href="mailto:kwaksu91@gmail.com">kwaksu91@gmail.com</a>
+  </div>
+  <div class="btn-group contact-actions">
+    <a class="btn btn-primary" href="mailto:kwaksu91@gmail.com">메일 보내기 ↗</a>
+    <button type="button" class="btn btn-outline" onclick="copyEmail()">주소 복사</button>
+    <a class="btn btn-outline" href="./kwak_seongeun_resume.pdf" download>경력기술서 PDF ↓</a>
+  </div>
 </div>
 </div>
 </section>
