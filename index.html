@@ -5,376 +5,184 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>곽성은 | 게임 기획자 & PM 포트폴리오 Hub</title>
 <meta name="description" content="곽성은 포트폴리오 문서" />
+<meta name="theme-color" content="#0B1F3A" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 
 <style>
-/* ===== Blueprint Grid — Design Tokens ===== */
+/* ===== Design Tokens — Planning Sheet / Blue ===== */
 :root{
---bg:#fafafa;
---surface:#ffffff;
---text:#0a0a0a;
---text-muted:#6b6b6b;
---border:#e6e6e6;
---grid:#e6e6e6;
---cross:#c2c2c2;
---accent:#e5484d;
---font-display:'IBM Plex Sans', Inter, sans-serif;
---font-mono:'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
---unit:24px;
+--ink:#0B1F3A;
+--ink-2:#14305A;
+--cobalt:#1D4ED8;
+--cobalt-dark:#1A3FB0;
+--sky:#DBE7FB;
+--sky-2:#EEF4FD;
+--paper:#F4F7FB;
+--surface:#FFFFFF;
+--steel:#5A6B85;
+--line:#D9E2EF;
+--on-ink:#E8EFFA;
+--on-ink-muted:#9FB3D1;
+--font:'Pretendard Variable', Pretendard, -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
 --content-max:1200px;
+--gutter:clamp(20px, 4vw, 48px);
+--radius-lg:14px;
+--radius-sm:8px;
 }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
-
-html{ scroll-behavior:smooth; }
-
+html{ scroll-behavior:smooth; scroll-padding-top:72px; }
 body{
-background-color:var(--bg);
-background-image:
-radial-gradient(circle, var(--grid) 1px, transparent 1px);
-background-size: var(--unit) var(--unit);
-color:var(--text);
-font-family:var(--font-display);
+background:var(--paper);
+color:var(--ink);
+font-family:var(--font);
 font-size:16px;
-line-height:1.6;
+line-height:1.7;
+letter-spacing:-0.005em;
 -webkit-font-smoothing:antialiased;
+word-break:keep-all;
 }
-
 a{ color:inherit; }
+img{ display:block; }
+button{ font:inherit; }
 
-.frame{
-max-width:var(--content-max);
-margin:0 auto;
-border-left:1px solid var(--grid);
-border-right:1px solid var(--grid);
-background-color:transparent;
+:focus-visible{ outline:3px solid var(--cobalt); outline-offset:3px; border-radius:4px; }
+
+.wrap{ max-width:var(--content-max); margin:0 auto; padding:0 var(--gutter); }
+
+/* ===== Type scale ===== */
+h1{ font-size:clamp(2.6rem, 6vw, 4.6rem); font-weight:800; line-height:1.05; letter-spacing:-0.035em; }
+h2{ font-size:clamp(1.75rem, 3vw, 2.5rem); font-weight:750; line-height:1.2; letter-spacing:-0.025em; }
+h3{ font-size:1.2rem; font-weight:700; line-height:1.4; letter-spacing:-0.015em; }
+
+/* ===== Section heading block ===== */
+.section{ padding:clamp(72px, 10vw, 120px) 0; }
+.section-head{
+display:grid;
+grid-template-columns:minmax(0, 1fr) minmax(0, 1.2fr);
+gap:16px 48px;
+align-items:end;
+margin-bottom:48px;
+padding-bottom:28px;
+border-bottom:1px solid var(--line);
 }
-
-.inner{ padding:0 var(--unit); }
-
-section{ position:relative; }
-
-.section-pad{ padding:96px 0; }
-.section-pad-sm{ padding:64px 0; }
-
-.section-divider{
-border-top:1px solid var(--grid);
-}
-
-/* ===== Eyebrow / Mono labels ===== */
 .eyebrow{
-font-family:var(--font-mono);
-font-size:0.75rem;
-font-weight:500;
-letter-spacing:0.04em;
-text-transform:uppercase;
-color:var(--accent);
-display:inline-flex;
-align-items:center;
-gap:8px;
-margin-bottom:16px;
+display:inline-flex; align-items:center; gap:10px;
+font-size:0.875rem; font-weight:600; color:var(--cobalt);
+margin-bottom:12px;
 }
-.eyebrow::before{ content:'//'; color:var(--cross); }
-
-.index-tag{
-font-family:var(--font-mono);
-font-size:0.75rem;
-color:var(--text-muted);
-letter-spacing:0.02em;
-}
-
-.coord{
-font-family:var(--font-mono);
-font-size:0.7rem;
-color:var(--text-muted);
-letter-spacing:0.01em;
-}
-
-/* ===== Typography ===== */
-h1{
-font-size:clamp(2.4rem, 5vw, 4.2rem);
-font-weight:600;
-letter-spacing:-0.02em;
-line-height:1.08;
-}
-h2{
-font-size:clamp(1.6rem, 2.8vw, 2.3rem);
-font-weight:600;
-line-height:1.15;
-letter-spacing:-0.01em;
-}
-h3{
-font-size:1.15rem;
-font-weight:600;
-letter-spacing:-0.01em;
-}
-p{ color:var(--text); }
-.muted{ color:var(--text-muted); }
+.eyebrow::before{ content:''; width:24px; height:2px; background:var(--cobalt); }
+.section-lead{ color:var(--steel); font-size:1rem; max-width:56ch; }
+@media (max-width:820px){ .section-head{ grid-template-columns:1fr; } }
 
 /* ===== Nav ===== */
 .nav-header{
-position:sticky;
-top:0;
-z-index:100;
-background-color:rgba(250,250,250,0.92);
-backdrop-filter:blur(6px);
-border-bottom:1px solid var(--grid);
+position:sticky; top:0; z-index:100;
+background:rgba(255,255,255,0.88);
+backdrop-filter:saturate(1.4) blur(10px);
+-webkit-backdrop-filter:saturate(1.4) blur(10px);
+border-bottom:1px solid var(--line);
 }
-.nav-inner{
-display:flex;
-align-items:center;
-justify-content:space-between;
-height:64px;
-}
+.nav-inner{ display:flex; align-items:center; justify-content:space-between; height:64px; gap:16px; }
 .nav-logo{
-font-family:var(--font-mono);
-font-size:0.85rem;
-font-weight:600;
-letter-spacing:0.02em;
-text-decoration:none;
-color:var(--text);
+display:inline-flex; align-items:center; gap:10px;
+font-weight:800; font-size:0.95rem; letter-spacing:0.01em; text-decoration:none; color:var(--ink);
 }
-.nav-logo span{ color:var(--accent); }
-.nav-links{
-display:flex;
-align-items:center;
-gap:28px;
-list-style:none;
+.nav-logo::before{
+content:''; width:18px; height:18px; border-radius:4px;
+background:linear-gradient(135deg, var(--cobalt) 0 50%, var(--ink) 50% 100%);
 }
+.nav-logo span{ color:var(--cobalt); }
+.nav-links{ display:flex; align-items:center; gap:4px; list-style:none; }
 .nav-links a{
-font-family:var(--font-mono);
-font-size:0.72rem;
-font-weight:500;
-letter-spacing:0.03em;
-text-transform:uppercase;
-text-decoration:none;
-color:var(--text-muted);
-transition:color 160ms ease-out;
+display:block; padding:8px 12px; border-radius:var(--radius-sm);
+font-size:0.8rem; font-weight:600; letter-spacing:0.01em;
+text-decoration:none; color:var(--steel);
+transition:color 150ms ease, background-color 150ms ease;
 }
-.nav-links a:hover{ color:var(--accent); }
+.nav-links a:hover{ color:var(--cobalt); background:var(--sky-2); }
 .nav-cta{
-border:1px solid var(--text);
-padding:7px 14px;
-color:var(--text) !important;
-transition:border-color 160ms ease-out, color 160ms ease-out, background-color 160ms ease-out;
+margin-left:8px; height:38px; padding:0 16px; border:0; border-radius:999px;
+background:var(--cobalt); color:#fff; font-size:0.8rem; font-weight:700; cursor:pointer;
+transition:background-color 150ms ease;
 }
-.nav-cta:hover{
-border-color:var(--accent);
-color:#ffffff !important;
-background-color:var(--accent);
-}
-@media (max-width:768px){
-.nav-links{ gap:14px; }
-.nav-links li:not(.nav-cta-item){ display:none; }
-}
+.nav-cta:hover{ background:var(--cobalt-dark); }
+@media (max-width:860px){ .nav-links li:not(.nav-cta-item){ display:none; } }
 
 /* ===== Buttons ===== */
 .btn{
-font-family:var(--font-mono);
-font-size:0.8rem;
-font-weight:500;
-letter-spacing:0.03em;
-text-transform:uppercase;
-text-decoration:none;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-height:48px;
-padding:0 28px;
-border-radius:0;
-border:1px solid var(--text);
-transition:background-color 160ms ease-out, color 160ms ease-out, border-color 160ms ease-out;
-cursor:pointer;
+display:inline-flex; align-items:center; justify-content:center; gap:8px;
+height:50px; padding:0 26px; border-radius:999px;
+font-size:0.92rem; font-weight:700; text-decoration:none; cursor:pointer;
+border:1.5px solid transparent;
+transition:background-color 150ms ease, color 150ms ease, border-color 150ms ease;
 }
-.btn-primary{
-background-color:var(--accent);
-border-color:var(--accent);
-color:#ffffff;
-}
-.btn-primary:hover{ background-color:#c93a3e; border-color:#c93a3e; }
-.btn-outline{
-background-color:transparent;
-color:var(--text);
-}
-.btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
-.btn-group{ display:flex; gap:16px; flex-wrap:wrap; }
-
-/* ===== Blueprint card w/ corner cross markers ===== */
-.bp-card{
-position:relative;
-background-color:var(--surface);
-border:1px solid var(--grid);
-padding:32px;
---cross-color:var(--cross);
-transition:border-color 160ms ease-out;
-}
-.bp-card:hover{ --cross-color:var(--accent); border-color:var(--accent); }
-
-.corner{
-position:absolute;
-width:12px;
-height:12px;
-pointer-events:none;
-}
-.corner::before{
-content:'';
-position:absolute;
-top:50%; left:0;
-width:100%; height:1px;
-background-color:var(--cross-color);
-transform:translateY(-50%);
-transition:background-color 160ms ease-out;
-}
-.corner::after{
-content:'';
-position:absolute;
-left:50%; top:0;
-height:100%; width:1px;
-background-color:var(--cross-color);
-transform:translateX(-50%);
-transition:background-color 160ms ease-out;
-}
-.corner.tl{ top:-6px; left:-6px; }
-.corner.tr{ top:-6px; right:-6px; }
-.corner.bl{ bottom:-6px; left:-6px; }
-.corner.br{ bottom:-6px; right:-6px; }
+.btn-primary{ background:#fff; color:var(--ink); }
+.btn-primary:hover{ background:var(--sky); }
+.btn-outline{ height:40px; padding:0 18px; font-size:0.82rem; background:var(--surface); color:var(--cobalt); border-color:var(--sky); white-space:nowrap; }
+.btn-outline:hover{ border-color:var(--cobalt); background:var(--sky-2); }
 
 /* ===== Hero ===== */
-.hero-grid{
-display:grid;
-grid-template-columns:1.1fr 0.9fr;
-gap:var(--unit);
-align-items:start;
+.hero{
+position:relative; overflow:hidden;
+background:var(--ink);
+color:var(--on-ink);
+padding:clamp(64px, 9vw, 112px) 0 clamp(72px, 10vw, 120px);
 }
-.hero-sub{
-font-size:1.05rem;
-color:var(--text-muted);
-max-width:56ch;
-margin:20px 0 40px;
+.hero::before{
+content:''; position:absolute; inset:0; pointer-events:none;
+background-image:
+linear-gradient(rgba(120,160,230,0.10) 1px, transparent 1px),
+linear-gradient(90deg, rgba(120,160,230,0.10) 1px, transparent 1px),
+linear-gradient(rgba(120,160,230,0.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(120,160,230,0.05) 1px, transparent 1px);
+background-size:96px 96px, 96px 96px, 24px 24px, 24px 24px;
+mask-image:radial-gradient(ellipse 90% 80% at 70% 40%, #000 30%, transparent 85%);
+-webkit-mask-image:radial-gradient(ellipse 90% 80% at 70% 40%, #000 30%, transparent 85%);
 }
-.hero-panel{
-position:relative;
+.hero::after{
+content:''; position:absolute; width:720px; height:720px; right:-200px; top:-260px; pointer-events:none;
+background:radial-gradient(circle, rgba(29,78,216,0.45), transparent 65%);
 }
-.shot-viewer-hero{
-height:480px;
-}
-@media (max-width:1024px){ .shot-viewer-hero{ height:420px; } }
-.hero-panel-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:1px;
-background-color:var(--grid);
-border:1px solid var(--grid);
-margin-top:8px;
-}
-.hero-stat{
-background-color:var(--surface);
-padding:20px 16px;
-}
-.hero-stat .num{
-font-family:var(--font-mono);
-font-size:1.6rem;
-font-weight:600;
-color:var(--accent);
-display:block;
-}
-.hero-stat .label{
-font-family:var(--font-mono);
-font-size:0.68rem;
-color:var(--text-muted);
-text-transform:uppercase;
-letter-spacing:0.03em;
-display:block;
-margin-top:6px;
-}
-@media (max-width:1024px){
-.hero-grid{ grid-template-columns:1fr; }
-}
+.hero .wrap{ position:relative; z-index:1; }
+.hero-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:clamp(32px, 5vw, 72px); align-items:center; }
+.hero .eyebrow{ color:#8FB2F5; }
+.hero .eyebrow::before{ background:#8FB2F5; }
+.hero-kicker{ font-size:clamp(1.1rem, 1.8vw, 1.4rem); font-weight:600; color:var(--on-ink-muted); letter-spacing:-0.01em; margin-bottom:10px; }
+.hero h1{ color:#fff; white-space:nowrap; font-size:clamp(2.4rem, 5vw, 4.2rem); }
+.hero-sub{ font-size:1rem; line-height:1.85; color:var(--on-ink); opacity:.86; max-width:58ch; margin:28px 0 36px; }
+@media (max-width:1024px){ .hero-grid{ grid-template-columns:1fr; } }
 
-/* ===== Doc Hub ===== */
-.doc-tabs-nav{
-display:flex;
-flex-wrap:wrap;
-border-bottom:1px solid var(--grid);
-margin-bottom:32px;
-}
-.doc-tab-btn{
-font-family:var(--font-mono);
-font-size:0.72rem;
-font-weight:500;
-letter-spacing:0.02em;
-text-transform:uppercase;
-background:none;
-border:none;
-border-bottom:2px solid transparent;
-color:var(--text-muted);
-padding:12px 18px 12px 0;
-margin-right:24px;
-cursor:pointer;
-transition:color 160ms ease-out, border-color 160ms ease-out;
-text-align:left;
-}
-.doc-tab-btn .idx{ color:var(--accent); margin-right:8px; }
-.doc-tab-btn:hover{ color:var(--text); }
-.doc-tab-btn.active{ color:var(--text); border-bottom-color:var(--accent); }
+/* Hero load sequence (single orchestrated moment) */
+@keyframes rise{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+.hero-copy > *{ animation:rise 600ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-copy > *:nth-child(2){ animation-delay:80ms; }
+.hero-copy > *:nth-child(3){ animation-delay:160ms; }
+.hero-copy > *:nth-child(4){ animation-delay:240ms; }
+.hero-copy > *:nth-child(5){ animation-delay:320ms; }
+.hero-panel{ animation:rise 800ms 300ms cubic-bezier(.2,.7,.2,1) both; }
 
-.doc-tab-content{ display:none; }
-.doc-tab-content.active{ display:block; }
-
-.doc-viewer-header{
-display:flex;
-justify-content:space-between;
-align-items:flex-start;
-gap:16px;
-flex-wrap:wrap;
-margin-bottom:16px;
-}
-.doc-viewer-title{ margin-bottom:6px; }
-.doc-viewer-desc{ font-size:0.9rem; color:var(--text-muted); max-width:60ch; }
-
-.live-embed-frame{
-width:100%;
-height:640px;
-border:1px solid var(--grid);
-overflow:hidden;
-position:relative;
-}
-.live-embed-frame iframe{ width:100%; height:100%; border:0; }
-
-@media (max-width:1024px){ .live-embed-frame{ height:480px; } }
-@media (max-width:640px){ .live-embed-frame{ height:400px; } }
-
-/* ===== Screenshot Slideshow ===== */
-.shot-viewer{
-position:relative;
-width:100%;
-height:560px;
-border:1px solid var(--grid);
-background-color:var(--bg);
-background-image:radial-gradient(circle, var(--grid) 1px, transparent 1px);
-background-size:24px 24px;
+/* ===== Screenshot window ===== */
+.shot-window{
+background:var(--surface);
+border-radius:var(--radius-lg);
+box-shadow:0 30px 80px -20px rgba(3,12,30,0.65), 0 0 0 1px rgba(255,255,255,0.06);
 overflow:hidden;
 }
-.shot-index{
-position:absolute;
-top:16px; left:16px;
-z-index:2;
-background-color:var(--surface);
-padding:4px 8px;
-border:1px solid var(--grid);
+.shot-bar{
+display:flex; align-items:center; gap:12px;
+height:42px; padding:0 16px;
+background:var(--sky-2); border-bottom:1px solid var(--line);
 }
+.shot-dots{ display:flex; gap:6px; }
+.shot-dots i{ width:10px; height:10px; border-radius:50%; background:#B9CAE6; }
+.shot-dots i:first-child{ background:var(--cobalt); }
+.shot-index{ font-size:0.72rem; font-weight:600; color:var(--steel); letter-spacing:0.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.shot-viewer{ position:relative; height:440px; background:var(--paper); }
 .shot-track{ position:absolute; inset:0; }
-.shot-slide{
-position:absolute;
-inset:0;
-display:flex;
-flex-direction:column;
-opacity:0;
-animation:shotFade 55s infinite;
-}
+.shot-slide{ position:absolute; inset:0; display:flex; flex-direction:column; opacity:0; animation:shotFade 55s infinite; }
 .shot-track .shot-slide:nth-child(1){ animation-delay:0s; }
 .shot-track .shot-slide:nth-child(2){ animation-delay:5s; }
 .shot-track .shot-slide:nth-child(3){ animation-delay:10s; }
@@ -386,188 +194,157 @@ animation:shotFade 55s infinite;
 .shot-track .shot-slide:nth-child(9){ animation-delay:40s; }
 .shot-track .shot-slide:nth-child(10){ animation-delay:45s; }
 .shot-track .shot-slide:nth-child(11){ animation-delay:50s; }
-
-.shot-img-wrap{
-flex:1;
-min-height:0;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:32px 32px 12px;
-}
-.shot-slide img{
-max-width:100%;
-max-height:100%;
-object-fit:contain;
-border:1px solid var(--grid);
-background-color:var(--surface);
-}
+.shot-img-wrap{ flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:24px 24px 12px; }
+.shot-slide img{ max-width:100%; max-height:100%; object-fit:contain; border-radius:6px; box-shadow:0 8px 24px -10px rgba(11,31,58,0.35); }
 .shot-caption{
-font-family:var(--font-mono);
-font-size:0.75rem;
-color:var(--text-muted);
-text-align:center;
-padding:10px 16px;
-border-top:1px solid var(--grid);
-background-color:var(--surface);
+font-size:0.82rem; font-weight:600; color:var(--ink);
+padding:12px 20px 16px; text-align:center;
 }
-.shot-caption .idx{ color:var(--accent); margin-right:6px; }
-
+.shot-caption .idx{ color:var(--cobalt); margin-right:6px; font-variant-numeric:tabular-nums; }
 .shot-viewer:hover .shot-slide{ animation-play-state:paused; }
-
 @keyframes shotFade{
-0%     { opacity:0; }
-0.91%  { opacity:1; }
-8.18%  { opacity:1; }
-9.09%  { opacity:0; }
-100%   { opacity:0; }
+0%{ opacity:0; } 0.91%{ opacity:1; } 8.18%{ opacity:1; } 9.09%{ opacity:0; } 100%{ opacity:0; }
 }
+@media (max-width:640px){ .shot-viewer{ height:340px; } }
 
-@media (max-width:768px){ .shot-viewer{ height:460px; } }
+/* ===== Document Hub — spec index layout ===== */
+.doc-layout{ display:grid; grid-template-columns:280px minmax(0, 1fr); gap:32px; align-items:start; }
+.doc-tabs-nav{
+position:sticky; top:88px;
+display:flex; flex-direction:column; gap:4px;
+padding:12px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+counter-reset:none;
+}
+.doc-tab-btn{
+display:flex; align-items:flex-start; gap:12px; width:100%;
+padding:14px 14px; border:0; border-radius:var(--radius-sm);
+background:transparent; color:var(--steel);
+font-size:0.92rem; font-weight:600; line-height:1.45; text-align:left; cursor:pointer;
+transition:background-color 150ms ease, color 150ms ease;
+}
+.doc-tab-btn .idx{
+flex:none; display:inline-grid; place-items:center;
+min-width:42px; height:24px; padding:0 6px; border-radius:6px;
+background:var(--sky-2); color:var(--cobalt);
+font-size:0.72rem; font-weight:700; font-variant-numeric:tabular-nums;
+}
+.doc-tab-btn:hover{ background:var(--sky-2); color:var(--ink); }
+.doc-tab-btn.active{ background:var(--ink); color:#fff; }
+.doc-tab-btn.active .idx{ background:var(--cobalt); color:#fff; }
 
-/* ===== Tags ===== */
-.tag-group{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
-.tag{
-font-family:var(--font-mono);
-font-size:0.68rem;
-letter-spacing:0.02em;
-text-transform:uppercase;
-border:1px solid var(--grid);
-padding:5px 10px;
-color:var(--text-muted);
-transition:border-color 160ms ease-out, color 160ms ease-out;
+.doc-panel{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); overflow:hidden; }
+.doc-tab-content{ display:none; }
+.doc-tab-content.active{ display:block; animation:docIn 260ms ease both; }
+@keyframes docIn{ from{ opacity:0; } to{ opacity:1; } }
+.doc-viewer-header{
+display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+padding:22px 24px; border-bottom:1px solid var(--line);
 }
-.tag:hover{ border-color:var(--accent); color:var(--accent); }
+.doc-viewer-title{ margin-bottom:4px; }
+.doc-viewer-desc{ font-size:0.9rem; color:var(--steel); max-width:60ch; }
+.live-embed-frame{ width:100%; height:680px; background:var(--paper); }
+.live-embed-frame object, .live-embed-frame iframe{ display:block; width:100%; height:100%; border:0; }
 
-/* ===== Career grid ===== */
-.career-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:var(--unit);
+@media (max-width:960px){
+.doc-layout{ grid-template-columns:1fr; gap:16px; }
+.doc-tabs-nav{ position:static; flex-direction:row; overflow-x:auto; scroll-snap-type:x mandatory; }
+.doc-tab-btn{ flex:0 0 auto; width:auto; scroll-snap-align:start; white-space:nowrap; align-items:center; }
+.live-embed-frame{ height:520px; }
 }
-.career-period{
-font-family:var(--font-mono);
-font-size:0.75rem;
-color:var(--accent);
-letter-spacing:0.02em;
+@media (max-width:640px){ .live-embed-frame{ height:420px; } }
+
+/* ===== Highlight — timeline ===== */
+.timeline{ position:relative; list-style:none; }
+.timeline::before{
+content:''; position:absolute; left:180px; top:8px; bottom:8px; width:2px;
+background:linear-gradient(var(--cobalt), var(--sky));
 }
-.career-role{ font-size:0.95rem; color:var(--text-muted); margin:6px 0 16px; }
-.career-list{ list-style:none; }
+.tl-item{ position:relative; display:grid; grid-template-columns:180px minmax(0, 1fr); }
+.tl-item + .tl-item{ margin-top:40px; }
+.tl-meta{ padding:30px 36px 0 0; text-align:right; }
+.tl-item::before{
+content:''; position:absolute; left:174px; top:36px;
+width:14px; height:14px; border-radius:50%;
+background:var(--surface); border:3px solid var(--cobalt);
+}
+.index-tag{ display:inline-block; font-size:0.75rem; font-weight:700; color:var(--steel); font-variant-numeric:tabular-nums; }
+.career-period{ font-size:0.95rem; font-weight:700; color:var(--cobalt); font-variant-numeric:tabular-nums; letter-spacing:-0.01em; line-height:1.4; }
+.bp-card{
+background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg);
+padding:clamp(24px, 3vw, 36px);
+}
+.tl-item .bp-card{ margin-left:36px; }
+.card-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; padding-bottom:18px; margin-bottom:20px; border-bottom:1px solid var(--line); }
+.card-head h3{ font-size:1.4rem; }
+.career-role{ font-size:0.95rem; font-weight:600; color:var(--steel); }
+.career-list{ list-style:none; display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; }
 .career-list li{
-font-size:0.92rem;
-color:var(--text);
-padding-left:16px;
-position:relative;
-margin-bottom:10px;
-line-height:1.55;
+padding:18px 18px 18px 20px; border-radius:var(--radius-sm);
+background:var(--sky-2); border-left:3px solid var(--cobalt);
+font-size:0.92rem; line-height:1.6;
 }
-.career-list li::before{
-content:'—';
-position:absolute;
-left:0;
-color:var(--cross);
+.career-list strong{ display:block; font-weight:700; color:var(--ink); margin-bottom:6px; }
+.career-note{ display:block; color:var(--steel); font-size:0.86rem; }
+.tag-group{ display:flex; flex-wrap:wrap; gap:8px; margin-top:22px; }
+.tag{
+font-size:0.76rem; font-weight:600; color:var(--cobalt);
+background:var(--surface); border:1px solid var(--sky); border-radius:999px; padding:4px 12px;
 }
-@media (max-width:768px){ .career-grid{ grid-template-columns:1fr; } }
+@media (max-width:860px){
+.timeline::before{ left:7px; }
+.tl-item{ grid-template-columns:1fr; padding-left:32px; }
+.tl-item::before{ left:1px; top:4px; }
+.tl-meta{ text-align:left; padding:0 0 12px; display:flex; gap:12px; align-items:baseline; }
+.tl-item .bp-card{ margin-left:0; }
+.career-list{ grid-template-columns:1fr; }
+}
 
-.recent-grid{ display:grid; grid-template-columns:1fr 1fr; gap:var(--unit); }
-@media (max-width:768px){ .recent-grid{ grid-template-columns:1fr; } }
-.recent-media-wrap{
-width:100%; aspect-ratio:16/9; border:1px solid var(--grid);
-background-color:var(--surface); overflow:hidden; margin-top:16px;
-display:flex; align-items:center; justify-content:center;
-}
-.recent-media-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform 300ms ease-out; }
-.bp-card:hover .recent-media-wrap img{ transform:scale(1.02); }
-
+/* ===== Recent ===== */
+.recent-card{ display:grid; grid-template-columns:1.25fr 1fr; gap:0; padding:0; overflow:hidden; }
+.recent-media-wrap{ aspect-ratio:16/9; background:var(--ink); overflow:hidden; }
+.recent-media-wrap a{ display:block; width:100%; height:100%; }
+.recent-media-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform 400ms ease; }
+.recent-media-wrap a:hover img{ transform:scale(1.03); }
+.recent-body{ display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:14px; padding:clamp(24px, 3vw, 40px); }
+.recent-body h3{ font-size:1.35rem; }
+@media (max-width:820px){ .recent-card{ grid-template-columns:1fr; } }
 
 /* ===== Footer ===== */
-footer{
-border-top:1px solid var(--grid);
-padding:56px 0;
-}
-.footer-grid{
-display:flex;
-justify-content:space-between;
-align-items:flex-end;
-flex-wrap:wrap;
-gap:32px;
-}
-.footer-name{ font-size:1.1rem; font-weight:600; margin-bottom:6px; }
-.footer-role{ font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); letter-spacing:0.02em; }
-.footer-links{ text-align:right; font-family:var(--font-mono); font-size:0.8rem; line-height:2; }
-.footer-links a{ text-decoration:none; color:var(--text); border-bottom:1px solid var(--grid); transition:border-color 160ms ease-out, color 160ms ease-out; }
-.footer-links a:hover{ color:var(--accent); border-color:var(--accent); }
+footer{ background:var(--ink); color:var(--on-ink); padding:56px 0; }
+.footer-grid{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px; }
+.footer-name{ font-size:1.25rem; font-weight:800; color:#fff; margin-bottom:6px; letter-spacing:-0.02em; }
+.footer-role{ font-size:0.82rem; color:var(--on-ink-muted); letter-spacing:0.02em; }
+.footer-links{ text-align:right; font-size:0.9rem; line-height:2; color:var(--on-ink-muted); }
+.footer-links a{ color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.25); transition:border-color 150ms ease, color 150ms ease; }
+.footer-links a:hover{ color:#A9C4F8; border-color:#A9C4F8; }
 @media (max-width:640px){ .footer-grid{ align-items:flex-start; } .footer-links{ text-align:left; } }
 
-/* ===== Scroll reveal ===== */
-.reveal{ opacity:0; transition:opacity 320ms ease-out; }
-.reveal.in{ opacity:1; }
+/* ===== Toast ===== */
+.toast{
+position:fixed; bottom:24px; right:24px; z-index:1000;
+display:flex; align-items:center; gap:10px;
+background:var(--ink); color:#fff;
+font-size:0.88rem; font-weight:600;
+padding:14px 20px; border-radius:12px;
+box-shadow:0 12px 32px -8px rgba(11,31,58,0.45);
+opacity:0; transform:translateY(12px);
+transition:opacity 200ms ease, transform 200ms ease; pointer-events:none;
+}
+.toast::before{ content:'✓'; display:grid; place-items:center; width:22px; height:22px; border-radius:50%; background:var(--cobalt); font-size:0.75rem; }
+.toast.show{ opacity:1; transform:none; }
 
 @media (prefers-reduced-motion: reduce){
-*{ transition:none !important; scroll-behavior:auto !important; }
-.reveal{ opacity:1 !important; }
-.shot-slide{ animation:none !important; opacity:0; }
+*, *::before, *::after{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
+.shot-slide{ opacity:0; }
 .shot-track .shot-slide:first-child{ opacity:1; }
 }
-
-/* ===== Toast Notification Style ===== */
-.toast {
-position: fixed;
-bottom: 24px;
-right: 24px;
-background-color: var(--text);
-color: #ffffff;
-font-family: var(--font-mono);
-font-size: 0.78rem;
-letter-spacing: 0.02em;
-padding: 12px 20px;
-border-left: 3px solid var(--accent);
-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-opacity: 0;
-transform: translateY(12px);
-transition: opacity 200ms ease-out, transform 200ms ease-out;
-pointer-events: none;
-z-index: 1000;
-}
-.toast.show {
-opacity: 1;
-transform: translateY(0);
-}
-
-.hero-panel,
-.shot-viewer,
-.shot-viewer-hero {
-border: none !important;
-background-color: transparent !important;
-box-shadow: none !important;
-padding: 0 !important;
-}
-
-.shot-viewer .corner {
-display: none !important;
-}
-
-.shot-img-wrap {
-border: none !important;
-background-color: transparent !important;
-}
-
-.shot-caption {
-background: transparent !important;
-background-color: transparent !important;
-border: none !important;
-padding-left: 0 !important;
-}
-
 </style>
 </head>
 <body>
 
-<div class="frame">
-
 <!-- Nav -->
 <header class="nav-header">
-<div class="inner nav-inner">
+<div class="wrap nav-inner">
 <a href="#top" class="nav-logo">KWACK_SEONGEUN<span>.</span></a>
 <ul class="nav-links">
 <li><a href="#Intro">[01] INTRO</a></li>
@@ -581,13 +358,16 @@ padding-left: 0 !important;
 </div>
 </header>
 
+<main id="top">
+
 <!-- Hero -->
-<section id="Intro" class="section-pad section-divider">
-<div class="inner">
+<section id="Intro" class="hero">
+<div class="wrap">
 <div class="hero-grid">
-<div>
+<div class="hero-copy">
 <span class="eyebrow">INTRO</span>
-<h2>기획서 한 장에서 서비스 운영까지</h2><h1>게임 기획자 & PM</h1>
+<h2 class="hero-kicker">기획서 한 장에서 서비스 운영까지</h2>
+<h1>게임 기획자 &amp; PM</h1>
 <p class="hero-sub">
 비주얼 노벨 개발로 시작해 Unity 기반 모바일 수집형 RPG의 시스템·콘텐츠 기획자로서 실무 역량을 다졌습니다. 라이브 서비스 환경에서 게임 내 경제/상점 밸런싱, 무한 PvE 콘텐츠 설계, 수집형 RPG 전투 유닛 제작 밸런싱, 사용자 데이터 기반 이탈 구간 보완을 전담했습니다. 나아가 변화하는 환경에 맞춰 GA4 및 데이터 대시보드 분석 역량을 확장하였으며, OTT 플랫폼의 PM으로서 멀티 디바이스 서비스 기획, 인프라 비용 절감, 정부 규제 대응(자체등급분류 사업자 지정)을 성공적으로 주도했습니다.
 </p>
@@ -595,9 +375,14 @@ padding-left: 0 !important;
 <a href="#doc-hub" class="btn btn-primary">라이브 문서 열람하기</a>
 </div>
 </div>
-<div class="hero-panel reveal">
-<div class="shot-viewer shot-viewer-hero">
+
+<div class="hero-panel">
+<div class="shot-window">
+<div class="shot-bar">
+<span class="shot-dots" aria-hidden="true"><i></i><i></i><i></i></span>
 <span class="index-tag shot-index">[ SCREENSHOTS // 11 IMAGES · SHUFFLED ]</span>
+</div>
+<div class="shot-viewer">
 <div class="shot-track">
 <div class="shot-slide">
 <div class="shot-img-wrap"><img src="./screenshots/shot-01.png" alt="kingdomstory-unit" /></div>
@@ -646,106 +431,123 @@ padding-left: 0 !important;
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </section>
 
 
 <!-- Live Document Hub -->
-<section id="doc-hub" class="section-pad section-divider">
-<div class="inner">
+<section id="doc-hub" class="section">
+<div class="wrap">
+<div class="section-head">
+<div>
 <span class="eyebrow">Portfolio</span>
 <h2>Document Hub</h2>
-<p class="hero-sub" style="margin-bottom:40px;">PDF, Google slide, docs, Figma를 활용하여 작성되었습니다. 로그인/권한상의 이유로 연결링크를 눌러야 원본 문서 확인이 가능합니다.</p>
-
-<div class="doc-tabs-nav">
-<button class="doc-tab-btn active" onclick="switchDocTab('tab-pdf', this)"><span class="idx">[01]</span>경력기술서 &amp; 관련 이력</button>
-<button class="doc-tab-btn" onclick="switchDocTab('tab-warframe-sys', this)"><span class="idx">[02]</span>(역) 워프레임 MOD 시스템</button>
-<button class="doc-tab-btn" onclick="switchDocTab('tab-warframe-ui', this)"><span class="idx">[03]</span>(역) 워프레임 MOD Wireframe</button>
-<button class="doc-tab-btn" onclick="switchDocTab('tab-boss', this)"><span class="idx">[04]</span>보스 컨셉 기획서</button>
+</div>
+<p class="section-lead">PDF, Google slide, docs, Figma를 활용하여 작성되었습니다. 로그인/권한상의 이유로 연결링크를 눌러야 원본 문서 확인이 가능합니다.</p>
 </div>
 
+<div class="doc-layout">
+<div class="doc-tabs-nav" role="tablist">
+<button class="doc-tab-btn active" role="tab" aria-selected="true" onclick="switchDocTab('tab-pdf', this)"><span class="idx">[01]</span>경력기술서 &amp; 관련 이력</button>
+<button class="doc-tab-btn" role="tab" aria-selected="false" onclick="switchDocTab('tab-warframe-sys', this)"><span class="idx">[02]</span>(역) 워프레임 MOD 시스템</button>
+<button class="doc-tab-btn" role="tab" aria-selected="false" onclick="switchDocTab('tab-warframe-ui', this)"><span class="idx">[03]</span>(역) 워프레임 MOD Wireframe</button>
+<button class="doc-tab-btn" role="tab" aria-selected="false" onclick="switchDocTab('tab-boss', this)"><span class="idx">[04]</span>보스 컨셉 기획서</button>
+</div>
+
+<div class="doc-panel">
 <!-- Tab 1: 경력기술서 -->
-<div id="tab-pdf" class="doc-tab-content active">
+<div id="tab-pdf" class="doc-tab-content active" role="tabpanel">
 <div class="doc-viewer-header">
 <div>
 <h3 class="doc-viewer-title">곽성은 경력기술서 PDF</h3>
 <p class="doc-viewer-desc">소프트닉스, NT게임즈/위메이드커넥트, SJMNC 등 6년 경력 세부기술서 PDF 원본입니다.</p>
 </div>
-<a href="./kwak_seongeun_resume.pdf" download class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">PDF 다운로드 ↓</a>
+<a href="./kwak_seongeun_resume.pdf" download class="btn btn-outline">PDF 다운로드 ↓</a>
 </div>
 <div class="live-embed-frame">
 <object data="./kwak_seongeun_resume.pdf" type="application/pdf" width="100%" height="100%">
-<iframe src="./kwak_seongeun_resume.pdf"></iframe>
+<iframe src="./kwak_seongeun_resume.pdf" title="곽성은 경력기술서 PDF"></iframe>
 </object>
 </div>
 </div>
 
 <!-- Tab 2: 워프레임 MOD 시스템 -->
-<div id="tab-warframe-sys" class="doc-tab-content">
+<div id="tab-warframe-sys" class="doc-tab-content" role="tabpanel">
 <div class="doc-viewer-header">
 <div>
 <h3 class="doc-viewer-title">워프레임 MOD 시스템 역기획서: System</h3>
 <p class="doc-viewer-desc">워프레임 모드 시스템 구조화 내용을 역기획한 내용입니다.</p>
 </div>
-<a href="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">구글 문서 원본 ↗</a>
+<a href="https://docs.google.com/presentation/d/e/2PACX-1vQz_SsRcg366jseJhnBn7hC5w4YG1R3V2tH2T_Gd2hGKYkUzvED_3t6N4pV470el8nT4I1Gw7XIzicD/pub?start=false&loop=false&delayms=3000" target="_blank" rel="noopener" class="btn btn-outline">구글 문서 원본 ↗</a>
 </div>
 <div class="live-embed-frame">
 <object data="./warframe_mod_system.pdf" type="application/pdf" width="100%" height="100%">
-<iframe src="./warframe_mod_system.pdf"></iframe>
+<iframe src="./warframe_mod_system.pdf" title="워프레임 MOD 시스템 역기획서: System"></iframe>
 </object>
 </div>
 </div>
 
 <!-- Tab 3: 워프레임 MOD Wireframe -->
-<div id="tab-warframe-ui" class="doc-tab-content">
+<div id="tab-warframe-ui" class="doc-tab-content" role="tabpanel">
 <div class="doc-viewer-header">
 <div>
 <h3 class="doc-viewer-title">워프레임 MOD 시스템 역기획서: Wireframe</h3>
 <p class="doc-viewer-desc">워프레임 모드 관련 와이어프레임을 작성한 내용입니다.</p>
 </div>
-<a href="https://docs.google.com/presentation/d/1rVWGDLXLuIs9UPz8qE8wBjl8mFEIEiUfMEpwmhFIc9A/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">구글 문서 원본 ↗</a>
+<a href="https://docs.google.com/presentation/d/1rVWGDLXLuIs9UPz8qE8wBjl8mFEIEiUfMEpwmhFIc9A/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline">구글 문서 원본 ↗</a>
 </div>
 <div class="live-embed-frame">
 <object data="./warframe_mod_ui.pdf" type="application/pdf" width="100%" height="100%">
-<iframe src="./warframe_mod_ui.pdf"></iframe>
+<iframe src="./warframe_mod_ui.pdf" title="워프레임 MOD 시스템 역기획서: Wireframe"></iframe>
 </object>
 </div>
 </div>
 
 <!-- Tab 4: 보스 컨셉 기획서 -->
-<div id="tab-boss" class="doc-tab-content">
+<div id="tab-boss" class="doc-tab-content" role="tabpanel">
 <div class="doc-viewer-header">
 <div>
 <h3 class="doc-viewer-title">보스 컨셉 기획서</h3>
 <p class="doc-viewer-desc">영화 '콘스탄틴' 테마의 보스 컨셉을 작성한 Figma 슬라이드입니다.</p>
 </div>
-<a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" rel="noopener" class="btn btn-outline" style="height:38px;font-size:0.7rem;padding:0 16px;">Figma에서 크게보기 ↗</a>
+<a href="https://www.figma.com/deck/lwbBUiISjdmKSNpGtebdxP/KSE_concept_portfolio?node-id=2036-1982" target="_blank" rel="noopener" class="btn btn-outline">Figma에서 크게보기 ↗</a>
 </div>
 <div class="live-embed-frame">
 <object data="./KSE_concept_portfolio.pdf" type="application/pdf" width="100%" height="100%">
-<iframe src="./KSE_concept_portfolio.pdf"></iframe>
+<iframe src="./KSE_concept_portfolio.pdf" title="보스 컨셉 기획서"></iframe>
 </object>
 </div>
 </div>
-
+</div>
+</div>
 </div>
 </section>
 
 <!-- Highlight Section -->
-<section id="highlight" class="section-pad section-divider">
-<div class="inner">
+<section id="highlight" class="section" style="background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<div class="wrap">
+<div class="section-head">
+<div>
 <span class="eyebrow">Highlight</span>
 <h2>최근/대표 이력</h2>
-<p class="hero-sub" style="margin-bottom:40px;">라이브 서비스 운영과 시스템 구조화를 아우르는 실행 중심 경험</p>
+</div>
+<p class="section-lead">라이브 서비스 운영과 시스템 구조화를 아우르는 실행 중심 경험</p>
+</div>
 
-<div class="career-grid">
+<ol class="timeline">
 <!-- Card 01 -->
-<div class="bp-card reveal">
-<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<li class="tl-item">
+<div class="tl-meta">
 <span class="index-tag">[01]</span>
-<p class="career-period" style="margin-top:8px;">2024.12 — 2026.04</p>
-<h3 style="margin-top:6px;">씨네온티브이/SJMNC</h3>
+<p class="career-period">2024.12 — 2026.04</p>
+</div>
+<article class="bp-card" style="background:var(--paper);">
+<div class="card-head">
+<h3>씨네온티브이/SJMNC</h3>
 <p class="career-role">OTT 서비스 MOA Platform PM</p>
-
+</div>
 <ul class="career-list">
 <li>
 <strong>스마트 TV 멀티 디바이스 서비스 확장</strong>
@@ -764,22 +566,25 @@ padding-left: 0 !important;
 <span class="career-note">// 편성 공백 최소화를 위한 FAST TRACK 라이브러리 구축 및 쿠팡플레이·티빙 등 주요 OTT 플랫폼과의 VOD 수입·배급 조율</span>
 </li>
 </ul>
-
 <div class="tag-group">
 <span class="tag">OTT</span>
 <span class="tag">AWS/OVP</span>
 <span class="tag">Dashboard</span>
 </div>
-</div>
+</article>
+</li>
 
 <!-- Card 02 -->
-<div class="bp-card reveal">
-<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<li class="tl-item">
+<div class="tl-meta">
 <span class="index-tag">[02]</span>
-<p class="career-period" style="margin-top:8px;">2018.10 — 2023.05</p>
-<h3 style="margin-top:6px;">소프트닉스</h3>
+<p class="career-period">2018.10 — 2023.05</p>
+</div>
+<article class="bp-card" style="background:var(--paper);">
+<div class="card-head">
+<h3>소프트닉스</h3>
 <p class="career-role">킹덤스토리 시스템 &amp; 콘텐츠 기획</p>
-
+</div>
 <ul class="career-list">
 <li>
 <strong>엔드 콘텐츠 '선인의 탑(무한 PvE 던전)' 기획 및 밸런싱</strong>
@@ -794,59 +599,49 @@ padding-left: 0 !important;
 <span class="career-note">// 유닛 스킬 상성 밸런스 튜닝 및 유닛 활용도 강화 &amp; 세계관 확립 등</span>
 </li>
 </ul>
-
 <div class="tag-group">
 <span class="tag">수집형 RPG</span>
 <span class="tag">PvE/PvP</span>
 <span class="tag">시스템 기획</span>
 </div>
-</div>
-</div>
+</article>
+</li>
+</ol>
 </div>
 </section>
 
 <!-- Recent Section -->
-<section id="recent" class="section-pad section-divider">
-<div class="inner">
+<section id="recent" class="section">
+<div class="wrap">
+<div class="section-head">
+<div>
 <span class="eyebrow">Recent</span>
 <h2>최근 작업</h2>
-<p class="hero-sub" style="margin-bottom:40px;">
-엔진 스터디 및 테크니컬 역량 확장을 위해 진행한 개인 작업입니다.
-</p>
-
-<div class="recent-grid" style="grid-template-columns: 1fr; max-width: 720px;">
-  <!-- UE5 C++/Blueprint 프로젝트 카드 -->
-  <article class="bp-card">
-    <span class="corner tl"></span><span class="corner tr"></span>
-    <span class="corner bl"></span><span class="corner br"></span>
-
-    <span class="index-tag">[01] Study &amp; Prototype</span>
-    <h3 style="margin-top:12px;">UE5(C++/Blueprint) FPS Prototype</h3>
-
-    <div class="recent-media-wrap">
-      <a href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer" style="display:block; width:100%; height:100%;">
-        <img src="./ue5_project.jpg" alt="UE5 Project 썸네일" />
-      </a>
-    </div>
-
-    <a
-      href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn btn-outline"
-      style="height:38px;font-size:0.7rem;padding:0 16px;margin-top:20px;"
-    >YouTube에서 보기 ↗</a>
-  </article>
 </div>
+<p class="section-lead">엔진 스터디 및 테크니컬 역량 확장을 위해 진행한 개인 작업입니다.</p>
+</div>
+
+<!-- UE5 C++/Blueprint 프로젝트 카드 -->
+<article class="bp-card recent-card">
+<div class="recent-media-wrap">
+<a href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer">
+<img src="./ue5_project.jpg" alt="UE5 Project 썸네일" />
+</a>
+</div>
+<div class="recent-body">
+<span class="index-tag">[01] Study &amp; Prototype</span>
+<h3>UE5(C++/Blueprint) FPS Prototype</h3>
+<a href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer" class="btn btn-outline">YouTube에서 보기 ↗</a>
+</div>
+</article>
 </div>
 </section>
 
-
-
+</main>
 
 <!-- Footer -->
 <footer>
-<div class="inner footer-grid">
+<div class="wrap footer-grid">
 <div>
 <p class="footer-name">곽성은 | Seongeun Kwack</p>
 <p class="footer-role">GAME PLANNER &amp; PRODUCT OWNER / PROJECT MANAGER</p>
@@ -858,14 +653,16 @@ padding-left: 0 !important;
 </div>
 </footer>
 
-</div>
+<!-- Toast UI Container -->
+<div id="toast" class="toast" role="status" aria-live="polite">이메일이 복사되었습니다. 감사합니다.</div>
 
 <script>
 function switchDocTab(tabId, btnElement){
 document.querySelectorAll('.doc-tab-content').forEach(c => c.classList.remove('active'));
-document.querySelectorAll('.doc-tab-btn').forEach(b => b.classList.remove('active'));
+document.querySelectorAll('.doc-tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
 document.getElementById(tabId).classList.add('active');
 btnElement.classList.add('active');
+btnElement.setAttribute('aria-selected', 'true');
 }
 
 // Screenshot slideshow — 로드 시 1회 순서 셔플 (표시 타이밍은 CSS @keyframes가 그대로 담당)
@@ -880,45 +677,23 @@ const j = Math.floor(Math.random() * (i + 1));
 slides.forEach(el => track.appendChild(el));
 })();
 
-// Scroll reveal
-if ('IntersectionObserver' in window) {
-const io = new IntersectionObserver((entries) => {
-entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-} else {
-document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
-}
-</script>
-
-<!-- Toast UI Container -->
-<div id="toast" class="toast">이메일이 복사되었습니다. 감사합니다.</div>
-
-<script>
-function copyEmail() {
-const email = 'Kwaksu91@gmail.com';
-
-// 클립보드 복사 실행
-navigator.clipboard.writeText(email).then(() => {
+function showToast(){
 const toast = document.getElementById('toast');
 toast.classList.add('show');
+setTimeout(() => toast.classList.remove('show'), 2500);
+}
 
-// 2.5초 후 토스트 자동 숨김
-setTimeout(() => {
-toast.classList.remove('show');
-}, 2500);
-}).catch(err => {
+function copyEmail() {
+const email = 'Kwaksu91@gmail.com';
+navigator.clipboard.writeText(email).then(showToast).catch(() => {
 // 구형 브라우저 대응 fallback
-const textArea = document.createElement("textarea");
+const textArea = document.createElement('textarea');
 textArea.value = email;
 document.body.appendChild(textArea);
 textArea.select();
 document.execCommand('copy');
 document.body.removeChild(textArea);
-
-const toast = document.getElementById('toast');
-toast.classList.add('show');
-setTimeout(() => toast.classList.remove('show'), 2500);
+showToast();
 });
 }
 </script>
