@@ -165,8 +165,8 @@ components:
 - **프레임:** 최대 1200px 중앙 컬럼. 좌우를 `grid-line` 1px 세로선으로 닫아 노트 한 장의 경계를 만든다. 안쪽 여백은 24px.
 - **배경:** `body` 전체에 24px 간격의 1px 점 격자 (radial-gradient).
 - **리듬:** 기본 단위 24px. 그리드 gap 24px, 카드 패딩 32px, 섹션 패딩 96px(작은 섹션 64px). 섹션 사이는 위쪽 1px 구분선.
-- **그리드:** 히어로는 1.1fr / 0.9fr 2열. 경력은 1fr / 1fr 2열. 최근 작업은 카드 한 장을 전체 폭 가로 구성(16:9 미디어 55% + 제목·버튼 45%). 스탯은 1px 간격의 2열 셀 그리드.
-- **반응형:** 1024px 이하에서 히어로 1열, 임베드 높이 축소. 768px 이하에서 경력 그리드 1열, 최근 작업 카드는 라벨 → 제목 → 미디어 → 버튼 순 세로 스택, 내비는 CTA만 남김. 640px 이하에서 푸터 좌측 정렬, 임베드 400px.
+- **그리드:** 히어로는 1.1fr / 0.9fr 2열. 경력은 1fr / 1fr 2열. 개인 작업은 Work Log(아래 Components) 한 장에 행을 쌓는다.
+- **반응형:** 1024px 이하에서 히어로 1열, 임베드 높이 축소. 768px 이하에서 경력 그리드 1열, 내비는 CTA만 남김. 640px 이하에서 푸터 좌측 정렬, 임베드 400px.
 - **Sticky 내비:** 높이 64px, 92% 불투명 Paper + 6px blur, 하단 1px 선.
 
 ## Elevation & Depth
@@ -235,8 +235,16 @@ components:
 ### Toast
 화면 오른쪽 아래 24px. Ink 배경, 흰 모노 0.8125rem, 왼쪽에 3px Signal Red 띠. 아래에서 12px 올라오며 200ms에 나타난다.
 
+### Work Log (개인 작업)
+노트의 작업 일지처럼 Blueprint Card 한 장 안에 작업을 행으로 쌓고, 행 사이는 1px `grid-line`으로 나눈다. 각 행은 3열이다.
+- **메타 열(9em)**: 모노 `[01]` 인덱스와 상태 라벨. 상태는 기본 Graphite이고, 공개 링크가 있는 작업(`.is-live`)만 Signal Red Deep.
+- **본문 열**: Title 크기 제목 → `fs-small` Graphite 설명(최대 40em) → 태그 → `.btn-sm` 링크.
+- **미디어 열(최대 22rem, 선택)**: 썸네일이 있는 작업만 `.has-media`로 둔다. 16:9.
+
+반응형: 900px 이하에서 미디어가 본문 아래로 내려가고, 640px 이하에서는 메타가 한 줄로 바뀌며 한 열로 쌓는다.
+
 ### Contact Close
-페이지의 마지막 장면. 최근 작업과 푸터 사이(`#contact`)에 Blueprint Card 한 장을 전체 폭으로 둔다. 왼쪽에는 Headline "함께 이야기 나눠요"와 모노 이메일 주소(Title 크기, 하단 `grid-line` 1px 밑줄, hover 시 Signal Red), 오른쪽 아래 정렬로 액션 3개: 메일 보내기 ↗(Primary, `mailto:`), 주소 복사(Outline, `copyEmail()` 토스트), 경력기술서 PDF ↓(Outline, 다운로드). 버튼은 48px 높이. 900px 이하에서 한 열로 쌓고 480px 이하에서는 버튼이 전체 폭을 차지한다. 제목 위에 eyebrow는 두지 않는다.
+페이지의 마지막 장면. 개인 작업과 푸터 사이(`#contact`)에 Blueprint Card 한 장을 전체 폭으로 둔다. 보이는 제목 없이(스크린리더용 `sr-only` h2 "연락처"만) 왼쪽에 모노 이메일 주소(Title 크기, 하단 `grid-line` 1px 밑줄, hover 시 Signal Red), 오른쪽 아래 정렬로 액션 3개: 메일 보내기 ↗(Primary, `mailto:`), 주소 복사(Outline, `copyEmail()` 토스트), 경력기술서 PDF ↓(Outline, 다운로드). 버튼은 48px 높이. 900px 이하에서 한 열로 쌓고 480px 이하에서는 버튼이 전체 폭을 차지한다.
 
 ## Do's and Don'ts
 
