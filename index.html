@@ -278,9 +278,46 @@ transition:background-color 160ms ease-out;
 .corner.br{ bottom:-6px; right:-6px; }
 
 /* ===== Hero ===== */
+.hero-tagline{ color:var(--text-muted); }
+.hero-lead{
+font-size:var(--fs-lead);
+line-height:1.75;
+color:var(--text);
+max-width:34em;
+margin:24px 0 0;
+}
+.hero-spec{
+margin:24px 0 40px;
+border-top:1px solid var(--grid);
+max-width:40em;
+}
+.hero-spec > div{
+display:grid;
+grid-template-columns:7.5em 1fr;
+gap:16px;
+padding:12px 0;
+border-bottom:1px solid var(--grid);
+}
+.hero-spec dt{
+font-family:var(--font-mono);
+font-size:var(--fs-label);
+letter-spacing:0.02em;
+color:var(--accent-text);
+padding-top:3px;
+}
+.hero-spec dd{
+margin:0;
+font-size:var(--fs-small);
+line-height:1.65;
+color:var(--text-muted);
+}
+.hero-spec strong{ color:var(--text); font-weight:600; }
+@media (max-width:640px){
+.hero-spec > div{ grid-template-columns:1fr; gap:4px; }
+}
 .hero-grid{
 display:grid;
-grid-template-columns:1.1fr 0.9fr;
+grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);
 gap:var(--unit);
 align-items:start;
 }
@@ -294,10 +331,6 @@ margin:20px 0 40px;
 .hero-panel{
 position:relative;
 }
-.shot-viewer-hero{
-height:480px;
-}
-@media (max-width:1024px){ .shot-viewer-hero{ height:420px; } }
 .hero-panel-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -327,7 +360,7 @@ display:block;
 margin-top:6px;
 }
 @media (max-width:1024px){
-.hero-grid{ grid-template-columns:1fr; }
+.hero-grid{ grid-template-columns:minmax(0,1fr); }
 }
 
 /* ===== Doc Hub ===== */
@@ -383,107 +416,138 @@ position:relative;
 
 @media (max-width:1024px){ .live-embed-frame{ height:480px; } }
 @media (max-width:640px){ .live-embed-frame{ height:400px; } }
-
-/* ===== Screenshot Slideshow ===== */
-.shot-viewer{
-position:relative;
-width:100%;
-height:560px;
-border:1px solid var(--grid);
-background-color:var(--bg);
-background-image:radial-gradient(circle, var(--grid) 1px, transparent 1px);
-background-size:24px 24px;
-overflow:hidden;
-}
-.shot-index{
-position:absolute;
-top:16px; left:16px;
-z-index:2;
-background-color:var(--surface);
-padding:4px 8px;
-border:1px solid var(--grid);
-}
-.shot-track{ position:absolute; inset:0; }
-.shot-slide{
-position:absolute;
-inset:0;
-display:flex;
-flex-direction:column;
-opacity:0;
-animation:shotFade 55s infinite;
-}
-.shot-track .shot-slide:nth-child(1){ animation-delay:0s; }
-.shot-track .shot-slide:nth-child(2){ animation-delay:5s; }
-.shot-track .shot-slide:nth-child(3){ animation-delay:10s; }
-.shot-track .shot-slide:nth-child(4){ animation-delay:15s; }
-.shot-track .shot-slide:nth-child(5){ animation-delay:20s; }
-.shot-track .shot-slide:nth-child(6){ animation-delay:25s; }
-.shot-track .shot-slide:nth-child(7){ animation-delay:30s; }
-.shot-track .shot-slide:nth-child(8){ animation-delay:35s; }
-.shot-track .shot-slide:nth-child(9){ animation-delay:40s; }
-.shot-track .shot-slide:nth-child(10){ animation-delay:45s; }
-.shot-track .shot-slide:nth-child(11){ animation-delay:50s; }
-
-.shot-img-wrap{
-flex:1;
-min-height:0;
+.embed-mobile-note{ display:none; }
+@media (max-width:768px){
+.live-embed-frame{ height:auto; }
+.live-embed-frame object,
+.live-embed-frame iframe{ display:none; }
+.embed-mobile-note{
 display:flex;
 align-items:center;
 justify-content:center;
-padding:32px 32px 12px;
+min-height:160px;
+padding:24px;
+margin:0;
+text-align:center;
+font-size:var(--fs-small);
+color:var(--text-muted);
+background-color:var(--surface);
 }
+}
+
+/* ===== Project Screenshot Viewer ===== */
+.shot-viewer{ position:relative; }
+.shot-projects{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-bottom:16px;
+}
+.shot-project{
+font-family:var(--font-mono);
+font-size:var(--fs-label);
+letter-spacing:0.02em;
+background:transparent;
+border:1px solid var(--grid);
+border-radius:0;
+color:var(--text-muted);
+padding:0 12px;
+min-height:32px;
+cursor:pointer;
+transition:border-color 160ms ease-out, color 160ms ease-out, background-color 160ms ease-out;
+}
+.shot-project .count{ color:var(--text-muted); margin-left:6px; }
+.shot-project:hover{ border-color:var(--accent); color:var(--accent-text); }
+.shot-project[aria-pressed="true"]{ border-color:var(--text); color:var(--text); background-color:var(--surface); }
+.shot-project[aria-pressed="true"] .count{ color:var(--accent-text); }
+
+.shot-stage{
+position:relative;
+height:400px;
+background-color:var(--surface);
+border:1px solid var(--grid);
+}
+.shot-slide{
+position:absolute;
+inset:0;
+margin:0;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:16px;
+opacity:0;
+visibility:hidden;
+transition:opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear 400ms;
+}
+.shot-slide.is-current{
+opacity:1;
+visibility:visible;
+transition:opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+}
+html:not(.js) .shot-slide:first-child{ opacity:1; visibility:visible; }
 .shot-slide img{
 max-width:100%;
 max-height:100%;
 object-fit:contain;
+display:block;
+}
+.shot-slide figcaption{
+position:absolute;
+width:1px; height:1px;
+overflow:hidden;
+clip:rect(0 0 0 0);
+white-space:nowrap;
+}
+
+.shot-bar{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:16px;
 border:1px solid var(--grid);
+border-top:none;
 background-color:var(--surface);
+padding:0 0 0 16px;
+min-height:44px;
 }
 .shot-caption{
 font-family:var(--font-mono);
 font-size:var(--fs-label);
-color:var(--text-muted);
-text-align:center;
-padding:10px 16px;
-border-top:1px solid var(--grid);
-background-color:var(--surface);
-}
-.shot-caption .idx{ color:var(--accent-text); margin-right:6px; }
-
-.shot-viewer:not(.user-play):hover .shot-slide,
-.shot-viewer.is-paused .shot-slide{ animation-play-state:paused; }
-
-.shot-pause{
-position:absolute;
-top:16px; right:16px;
-z-index:2;
-font-family:var(--font-mono);
-font-size:var(--fs-label);
-letter-spacing:0.02em;
 color:var(--text);
-background-color:var(--surface);
-border:1px solid var(--grid);
+letter-spacing:0.01em;
+min-width:0;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+}
+.shot-caption .idx{ color:var(--accent-text); margin-right:8px; font-variant-numeric:tabular-nums; }
+.shot-controls{ display:flex; flex-shrink:0; }
+.shot-controls[hidden]{ display:none; }
+.shot-ctrl{
+width:44px;
+height:44px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+background:transparent;
+border:none;
+border-left:1px solid var(--grid);
 border-radius:0;
-padding:4px 8px;
+color:var(--text);
 cursor:pointer;
-transition:border-color 160ms ease-out, color 160ms ease-out;
+transition:color 160ms ease-out, background-color 160ms ease-out;
 }
-.shot-pause:hover{ border-color:var(--accent); color:var(--accent-text); }
-.shot-pause[hidden]{ display:none; }
+.shot-ctrl:hover{ color:var(--accent-text); background-color:var(--bg); }
+.shot-ctrl svg{ width:14px; height:14px; display:block; }
+.shot-ctrl .icon-play{ display:none; }
+.shot-ctrl[aria-pressed="true"] .icon-play{ display:block; }
+.shot-ctrl[aria-pressed="true"] .icon-pause{ display:none; }
+
+@media (max-width:1024px){ .shot-stage{ height:360px; } }
 @media (max-width:768px){
-.shot-pause{ min-height:44px; padding:4px 12px; }
-.shot-index{ max-width:calc(100% - 160px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.shot-stage{ height:320px; }
+.shot-project{ min-height:40px; }
 }
-
-@keyframes shotFade{
-0%     { opacity:0; }
-0.91%  { opacity:1; }
-8.18%  { opacity:1; }
-9.09%  { opacity:0; }
-100%   { opacity:0; }
-}
-
-@media (max-width:768px){ .shot-viewer{ height:460px; } }
 
 /* ===== Tags ===== */
 .tag-group{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
@@ -575,9 +639,6 @@ border-radius:0;
 @media (prefers-reduced-motion: reduce){
 *{ transition:none !important; scroll-behavior:auto !important; }
 .reveal{ opacity:1 !important; }
-.shot-slide{ animation:none !important; opacity:0; }
-.shot-pause{ display:none; }
-.shot-track .shot-slide:first-child{ opacity:1; }
 }
 
 /* ===== Toast Notification Style ===== */
@@ -602,31 +663,6 @@ z-index: 1000;
 .toast.show {
 opacity: 1;
 transform: translateY(0);
-}
-
-.hero-panel,
-.shot-viewer,
-.shot-viewer-hero {
-border: none !important;
-background-color: transparent !important;
-box-shadow: none !important;
-padding: 0 !important;
-}
-
-.shot-viewer .corner {
-display: none !important;
-}
-
-.shot-img-wrap {
-border: none !important;
-background-color: transparent !important;
-}
-
-.shot-caption {
-background: transparent !important;
-background-color: transparent !important;
-border: none !important;
-padding-left: 0 !important;
 }
 
 </style>
@@ -657,62 +693,89 @@ padding-left: 0 !important;
 <div class="hero-grid">
 <div>
 <span class="eyebrow">INTRO</span>
-<p class="hero-tagline">기획서 한 장에서 서비스 운영까지</p><h1>게임 기획자 & PM</h1>
-<p class="hero-sub">
-비주얼 노벨 개발로 시작해 Unity 기반 모바일 수집형 RPG의 시스템·콘텐츠 기획자로서 실무 역량을 다졌습니다. 라이브 서비스 환경에서 게임 내 경제/상점 밸런싱, 무한 PvE 콘텐츠 설계, 수집형 RPG 전투 유닛 제작 밸런싱, 사용자 데이터 기반 이탈 구간 보완을 전담했습니다. 나아가 변화하는 환경에 맞춰 GA4 및 데이터 대시보드 분석 역량을 확장하였으며, OTT 플랫폼의 PM으로서 멀티 디바이스 서비스 기획, 인프라 비용 절감, 정부 규제 대응(자체등급분류 사업자 지정)을 성공적으로 주도했습니다.
-</p>
+<p class="hero-tagline">기획서 한 장에서 서비스 운영까지</p><h1>게임 기획자 &amp; PM</h1>
+<p class="hero-lead">비주얼 노벨 개발로 시작해 Unity 기반 모바일 수집형 RPG의 시스템·콘텐츠 기획자로서 실무 역량을 다졌습니다.</p>
+<dl class="hero-spec">
+<div>
+<dt>게임 기획</dt>
+<dd>라이브 서비스 환경에서 <strong>경제/상점 밸런싱</strong>, <strong>무한 PvE 콘텐츠 설계</strong>, 수집형 RPG 전투 유닛 제작 밸런싱, 사용자 데이터 기반 이탈 구간 보완 전담</dd>
+</div>
+<div>
+<dt>데이터</dt>
+<dd>GA4 및 데이터 대시보드 분석 역량 확장</dd>
+</div>
+<div>
+<dt>서비스 PM</dt>
+<dd>OTT 플랫폼 멀티 디바이스 서비스 기획, <strong>인프라 비용 68% 절감</strong>, 정부 규제 대응(<strong>자체등급분류 사업자 지정</strong>) 주도</dd>
+</div>
+</dl>
 <div class="btn-group">
 <a href="#doc-hub" class="btn btn-primary">라이브 문서 열람하기</a>
+<a href="./kwak_seongeun_resume.pdf" download class="btn btn-outline">경력기술서 PDF ↓</a>
 </div>
 </div>
 <div class="hero-panel reveal">
-<div class="shot-viewer shot-viewer-hero">
-<span class="index-tag shot-index">[ SCREENSHOTS // 11 IMAGES · SHUFFLED ]</span>
-<button type="button" class="shot-pause" id="shot-pause" aria-pressed="false" hidden>❚❚ 일시정지</button>
-<div class="shot-track">
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-01.png" alt="킹덤스토리 신규 유닛 양유기 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[01]</span>킹덤스토리 신규 유닛-양유기(unity2D)</div>
+<div class="shot-viewer" role="region" aria-roledescription="carousel" aria-label="프로젝트 화면">
+<div class="shot-projects" role="group" aria-label="프로젝트 선택">
+<button type="button" class="shot-project" data-project="kingdom" aria-pressed="true">킹덤스토리<span class="count">2</span></button>
+<button type="button" class="shot-project" data-project="loverecipe" aria-pressed="false">러브레시피<span class="count">2</span></button>
+<button type="button" class="shot-project" data-project="ott" aria-pressed="false">OTT MOA<span class="count">3</span></button>
+<button type="button" class="shot-project" data-project="day7" aria-pressed="false">한입만 줄래?<span class="count">4</span></button>
 </div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-02.png" alt="킹덤스토리 군단성 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[02]</span>킹덤스토리 군단성(unity2D)</div>
+<div class="shot-stage" aria-live="off">
+<figure class="shot-slide is-current" data-project="kingdom" data-caption="킹덤스토리 신규 유닛-양유기(unity2D)">
+<img src="./screenshots/shot-01.png" alt="킹덤스토리 신규 유닛 양유기 화면 캡처" decoding="async" />
+<figcaption>킹덤스토리 신규 유닛-양유기(unity2D)</figcaption>
+</figure>
+<figure class="shot-slide" data-project="kingdom" data-caption="킹덤스토리 군단성(unity2D)">
+<img src="./screenshots/shot-02.png" alt="킹덤스토리 군단성 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>킹덤스토리 군단성(unity2D)</figcaption>
+</figure>
+<figure class="shot-slide" data-project="loverecipe" data-caption="러브레시피 NPC 가든">
+<img src="./screenshots/shot-03.png" alt="러브레시피 NPC 가든 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>러브레시피 NPC 가든</figcaption>
+</figure>
+<figure class="shot-slide" data-project="loverecipe" data-caption="러브레시피 플레이화면(unity3D)">
+<img src="./screenshots/shot-04.png" alt="러브레시피 플레이 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>러브레시피 플레이화면(unity3D)</figcaption>
+</figure>
+<figure class="shot-slide" data-project="ott" data-caption="OTT 숏드 도입">
+<img src="./screenshots/shot-05.png" alt="OTT 숏드 도입 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>OTT 숏드 도입</figcaption>
+</figure>
+<figure class="shot-slide" data-project="ott" data-caption="OTT 연령제한">
+<img src="./screenshots/shot-06.png" alt="OTT 연령제한 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>OTT 연령제한</figcaption>
+</figure>
+<figure class="shot-slide" data-project="ott" data-caption="OTT 자막 서비스 도입">
+<img src="./screenshots/shot-07.png" alt="OTT 자막 서비스 도입 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>OTT 자막 서비스 도입</figcaption>
+</figure>
+<figure class="shot-slide" data-project="day7" data-caption="한입만 줄래? 플레이화면">
+<img src="./screenshots/shot-08.jpg" alt="한입만 줄래? 메인 메뉴 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>한입만 줄래? 플레이화면</figcaption>
+</figure>
+<figure class="shot-slide" data-project="day7" data-caption="한입만 줄래? 플레이화면">
+<img src="./screenshots/shot-09.jpg" alt="한입만 줄래? 스토리 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>한입만 줄래? 플레이화면</figcaption>
+</figure>
+<figure class="shot-slide" data-project="day7" data-caption="한입만 줄래? 플레이화면">
+<img src="./screenshots/shot-10.jpg" alt="한입만 줄래? 정보 메뉴 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>한입만 줄래? 플레이화면</figcaption>
+</figure>
+<figure class="shot-slide" data-project="day7" data-caption="한입만 줄래? 플레이화면">
+<img src="./screenshots/shot-11.jpg" alt="한입만 줄래? 메인 메뉴/의상 화면 캡처" loading="lazy" decoding="async" />
+<figcaption>한입만 줄래? 플레이화면</figcaption>
+</figure>
 </div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-03.png" alt="러브레시피 NPC 가든 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[03]</span>러브레시피 NPC 가든</div>
+<div class="shot-bar">
+<p class="shot-caption" id="shot-caption"><span class="idx">[01/11]</span>킹덤스토리 신규 유닛-양유기(unity2D)</p>
+<div class="shot-controls" hidden>
+<button type="button" class="shot-ctrl" data-dir="-1" aria-label="이전 화면"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button>
+<button type="button" class="shot-ctrl" id="shot-toggle" aria-pressed="false" aria-label="자동 넘김 일시정지"><svg class="icon-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="2.5" height="10"/><rect x="9.5" y="3" width="2.5" height="10"/></svg><svg class="icon-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3v10l8-5z"/></svg></button>
+<button type="button" class="shot-ctrl" data-dir="1" aria-label="다음 화면"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button>
 </div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-04.png" alt="러브레시피 플레이 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[04]</span>러브레시피 플레이화면(unity3D)</div>
 </div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-05.png" alt="OTT 숏드 도입 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[05]</span>OTT 숏드 도입</div>
-</div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-06.png" alt="OTT 연령제한 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[06]</span>OTT 연령제한</div>
-</div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-07.png" alt="OTT 자막 서비스 도입 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[07]</span>OTT 자막 서비스 도입</div>
-</div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-08.jpg" alt="한입만 줄래? 메인 메뉴 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[08]</span>한입만 줄래? 플레이화면</div>
-</div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-09.jpg" alt="한입만 줄래? 스토리 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[09]</span>한입만 줄래? 플레이화면</div>
-</div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-10.jpg" alt="한입만 줄래? 정보 메뉴 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[10]</span>한입만 줄래? 플레이화면</div>
-</div>
-<div class="shot-slide">
-<div class="shot-img-wrap"><img src="./screenshots/shot-11.jpg" alt="한입만 줄래? 메인 메뉴/의상 화면 캡처" /></div>
-<div class="shot-caption"><span class="idx">[11]</span>한입만 줄래? 플레이화면</div>
 </div>
 </div>
 </div>
@@ -747,6 +810,7 @@ padding-left: 0 !important;
 <object data="./kwak_seongeun_resume.pdf" type="application/pdf" width="100%" height="100%">
 <iframe src="./kwak_seongeun_resume.pdf"></iframe>
 </object>
+<p class="embed-mobile-note">PC판에서 확인 부탁 드립니다.</p>
 </div>
 </div>
 
@@ -763,6 +827,7 @@ padding-left: 0 !important;
 <object data="./warframe_mod_system.pdf" type="application/pdf" width="100%" height="100%">
 <iframe src="./warframe_mod_system.pdf"></iframe>
 </object>
+<p class="embed-mobile-note">PC판에서 확인 부탁 드립니다.</p>
 </div>
 </div>
 
@@ -779,6 +844,7 @@ padding-left: 0 !important;
 <object data="./warframe_mod_ui.pdf" type="application/pdf" width="100%" height="100%">
 <iframe src="./warframe_mod_ui.pdf"></iframe>
 </object>
+<p class="embed-mobile-note">PC판에서 확인 부탁 드립니다.</p>
 </div>
 </div>
 
@@ -795,6 +861,7 @@ padding-left: 0 !important;
 <object data="./KSE_concept_portfolio.pdf" type="application/pdf" width="100%" height="100%">
 <iframe src="./KSE_concept_portfolio.pdf"></iframe>
 </object>
+<p class="embed-mobile-note">PC판에서 확인 부탁 드립니다.</p>
 </div>
 </div>
 
@@ -813,6 +880,36 @@ padding-left: 0 !important;
 <div class="bp-card reveal">
 <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
 <span class="index-tag">[01]</span>
+<p class="career-period" style="margin-top:8px;">2018.10 — 2023.05</p>
+<h3 style="margin-top:6px;">소프트닉스</h3>
+<p class="career-role">킹덤스토리 시스템 &amp; 콘텐츠 기획</p>
+
+<ul class="career-list">
+<li>
+<strong>엔드 콘텐츠 '선인의 탑(무한 PvE 던전)' 기획 및 밸런싱</strong>
+<span class="career-note">// 서비스 4년 차 고레벨 유저의 재접속률 및 재화 보유량 분석을 바탕으로 성장의 천장(Max Level)과 지속적인 플레이 동기 제공</span>
+</li>
+<li>
+<strong>유저 선택형 퀘스트 '현상금' 시스템 설계</strong>
+<span class="career-note">// 난이도별 퀘스트 생성 로직 및 재화 순환 밸런싱으로 일일 루틴 강화</span>
+</li>
+<li>
+<strong>대규모 PvP 및 시나리오 디자인</strong>
+<span class="career-note">// 유닛 스킬 상성 밸런스 튜닝 및 유닛 활용도 강화 &amp; 세계관 확립 등</span>
+</li>
+</ul>
+
+<div class="tag-group">
+<span class="tag">수집형 RPG</span>
+<span class="tag">PvE/PvP</span>
+<span class="tag">시스템 기획</span>
+</div>
+</div>
+
+<!-- Card 02 -->
+<div class="bp-card reveal">
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+<span class="index-tag">[02]</span>
 <p class="career-period" style="margin-top:8px;">2024.12 — 2026.04</p>
 <h3 style="margin-top:6px;">씨네온티브이/SJMNC</h3>
 <p class="career-role">OTT 서비스 MOA Platform PM</p>
@@ -840,36 +937,6 @@ padding-left: 0 !important;
 <span class="tag">OTT</span>
 <span class="tag">AWS/OVP</span>
 <span class="tag">Dashboard</span>
-</div>
-</div>
-
-<!-- Card 02 -->
-<div class="bp-card reveal">
-<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-<span class="index-tag">[02]</span>
-<p class="career-period" style="margin-top:8px;">2018.10 — 2023.05</p>
-<h3 style="margin-top:6px;">소프트닉스</h3>
-<p class="career-role">킹덤스토리 시스템 &amp; 콘텐츠 기획</p>
-
-<ul class="career-list">
-<li>
-<strong>엔드 콘텐츠 '선인의 탑(무한 PvE 던전)' 기획 및 밸런싱</strong>
-<span class="career-note">// 서비스 4년 차 고레벨 유저의 재접속률 및 재화 보유량 분석을 바탕으로 성장의 천장(Max Level)과 지속적인 플레이 동기 제공</span>
-</li>
-<li>
-<strong>유저 선택형 퀘스트 '현상금' 시스템 설계</strong>
-<span class="career-note">// 난이도별 퀘스트 생성 로직 및 재화 순환 밸런싱으로 일일 루틴 강화</span>
-</li>
-<li>
-<strong>대규모 PvP 및 시나리오 디자인</strong>
-<span class="career-note">// 유닛 스킬 상성 밸런스 튜닝 및 유닛 활용도 강화 &amp; 세계관 확립 등</span>
-</li>
-</ul>
-
-<div class="tag-group">
-<span class="tag">수집형 RPG</span>
-<span class="tag">PvE/PvP</span>
-<span class="tag">시스템 기획</span>
 </div>
 </div>
 </div>
@@ -959,30 +1026,62 @@ activate(tabs[n], true);
 });
 })();
 
-// Slideshow pause/play (WCAG 2.2.2)
-(function shotPause(){
-const btn = document.getElementById('shot-pause');
+// Project screenshot viewer: grouped by project, autoplay with pause/prev/next
+(function shotViewer(){
 const viewer = document.querySelector('.shot-viewer');
-if (!btn || !viewer) return;
-btn.hidden = false;
-btn.addEventListener('click', () => {
-const paused = viewer.classList.toggle('is-paused');
-viewer.classList.toggle('user-play', !paused);
-btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
-btn.textContent = paused ? '▶ 재생' : '❚❚ 일시정지';
-});
+if (!viewer) return;
+const slides = Array.from(viewer.querySelectorAll('.shot-slide'));
+const chips = Array.from(viewer.querySelectorAll('.shot-project'));
+const caption = document.getElementById('shot-caption');
+const controls = viewer.querySelector('.shot-controls');
+const toggle = document.getElementById('shot-toggle');
+const total = String(slides.length).padStart(2, '0');
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+let current = 0, timer = null, userPaused = reduce.matches, hovering = false;
+controls.hidden = false;
+function show(i){
+current = (i + slides.length) % slides.length;
+slides.forEach((el, k) => el.classList.toggle('is-current', k === current));
+const sl = slides[current];
+caption.innerHTML = '<span class="idx">[' + String(current + 1).padStart(2, '0') + '/' + total + ']</span>' + sl.dataset.caption;
+chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.project === sl.dataset.project ? 'true' : 'false'));
+}
+function schedule(){
+clearTimeout(timer);
+if (userPaused || hovering || document.hidden) return;
+timer = setTimeout(() => { show(current + 1); schedule(); }, 5000);
+}
+function setPaused(p){
+userPaused = p;
+toggle.setAttribute('aria-pressed', p ? 'true' : 'false');
+toggle.setAttribute('aria-label', p ? '자동 넘김 재생' : '자동 넘김 일시정지');
+schedule();
+}
+viewer.querySelectorAll('.shot-ctrl[data-dir]').forEach(b => b.addEventListener('click', () => { show(current + Number(b.dataset.dir)); schedule(); }));
+toggle.addEventListener('click', () => setPaused(!userPaused));
+chips.forEach(c => c.addEventListener('click', () => { show(slides.findIndex(s => s.dataset.project === c.dataset.project)); schedule(); }));
+const stage = viewer.querySelector('.shot-stage');
+stage.addEventListener('mouseenter', () => { hovering = true; schedule(); });
+stage.addEventListener('mouseleave', () => { hovering = false; schedule(); });
+document.addEventListener('visibilitychange', schedule);
+setPaused(userPaused);
+show(0);
 })();
 
-// Screenshot slideshow — 로드 시 1회 순서 셔플 (표시 타이밍은 CSS @keyframes가 그대로 담당)
-(function shuffleShots(){
-const track = document.querySelector('.shot-track');
-if (!track) return;
-const slides = Array.from(track.children);
-for (let i = slides.length - 1; i > 0; i--) {
-const j = Math.floor(Math.random() * (i + 1));
-[slides[i], slides[j]] = [slides[j], slides[i]];
+// Mobile: skip PDF embeds (shows "PC판에서 확인" note instead) so phones don't download large PDFs
+(function mobilePdf(){
+const mq = window.matchMedia('(max-width:768px)');
+const frames = Array.from(document.querySelectorAll('.live-embed-frame'));
+const stash = new Map();
+function apply(){
+frames.forEach(f => {
+const obj = f.querySelector('object');
+if (mq.matches && obj) { stash.set(f, obj); obj.remove(); }
+else if (!mq.matches && stash.has(f)) { f.insertBefore(stash.get(f), f.firstChild); stash.delete(f); }
+});
 }
-slides.forEach(el => track.appendChild(el));
+apply();
+mq.addEventListener('change', apply);
 })();
 
 // Scroll reveal
