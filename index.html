@@ -587,37 +587,65 @@ color:var(--cross);
 }
 @media (max-width:768px){ .career-grid{ grid-template-columns:1fr; } }
 
-.recent-grid{ display:grid; grid-template-columns:1fr; gap:var(--unit); }
-.recent-card{
+/* ===== Work log (Recent) ===== */
+.work-log{ padding:0 32px; }
+.work-item{
 display:grid;
-grid-template-columns:11fr 9fr;
-grid-template-rows:1fr auto auto auto 1fr;
-column-gap:48px;
-align-items:start;
+grid-template-columns:9em minmax(0,1fr);
+column-gap:32px;
+padding:32px 0;
+border-bottom:1px solid var(--grid);
 }
-.recent-card .recent-media-wrap{ grid-column:1; grid-row:1 / -1; margin-top:0; }
-.recent-card .index-tag{ grid-column:2; grid-row:2; justify-self:start; }
-.recent-card h3{ grid-column:2; grid-row:3; margin-top:12px; font-size:var(--fs-headline); line-height:1.3; letter-spacing:-0.03em; }
-.recent-card .recent-cta{ grid-column:2; grid-row:4; justify-self:start; margin-top:24px; }
-@media (max-width:768px){
-.recent-card{ grid-template-columns:1fr; grid-template-rows:none; column-gap:0; }
-.recent-card .recent-media-wrap,
-.recent-card .index-tag,
-.recent-card h3,
-.recent-card .recent-cta{ grid-column:1; grid-row:auto; }
-.recent-card .index-tag{ order:1; }
-.recent-card h3{ order:2; font-size:var(--fs-title); letter-spacing:-0.02em; }
-.recent-card .recent-media-wrap{ order:3; margin-top:16px; }
-.recent-card .recent-cta{ order:4; margin-top:20px; height:44px; }
+.work-item:last-child{ border-bottom:none; }
+.work-item.has-media{ grid-template-columns:9em minmax(0,1fr) minmax(0,22rem); }
+.work-meta{ display:flex; flex-direction:column; gap:6px; padding-top:4px; }
+.work-status{
+font-family:var(--font-mono);
+font-size:var(--fs-label);
+letter-spacing:0.02em;
+color:var(--text-muted);
 }
+.work-item h3{ font-size:var(--fs-title); line-height:1.4; }
+.work-desc{ margin-top:8px; font-size:var(--fs-small); line-height:1.7; color:var(--text-muted); max-width:40em; }
+.work-item .tag-group{ margin-top:16px; }
+.work-item .btn{ margin-top:20px; }
+.work-media{ align-self:start; }
 .recent-media-wrap{
 width:100%; aspect-ratio:16/9; border:1px solid var(--grid);
-background-color:var(--surface); overflow:hidden; margin-top:16px;
+background-color:var(--surface); overflow:hidden;
 display:flex; align-items:center; justify-content:center;
 }
 .recent-media-wrap > a{ display:block; width:100%; height:100%; }
 .recent-media-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform 300ms ease-out; }
-.bp-card:hover .recent-media-wrap img{ transform:scale(1.02); }
+.recent-media-wrap.is-contain img{ object-fit:contain; }
+.recent-media-wrap.is-pending{
+background-color:var(--bg);
+background-image:radial-gradient(circle, var(--grid) 1px, transparent 1px);
+background-size:var(--unit) var(--unit);
+}
+.recent-media-wrap.is-pending span{
+font-family:var(--font-mono);
+font-size:var(--fs-label);
+letter-spacing:0.02em;
+color:var(--text-muted);
+background-color:var(--surface);
+border:1px solid var(--grid);
+padding:4px 10px;
+}
+.work-item:hover .recent-media-wrap img{ transform:scale(1.02); }
+@media (max-width:900px){
+.work-item.has-media{ grid-template-columns:9em minmax(0,1fr); }
+.work-item.has-media .work-media{ grid-column:2; margin-top:20px; }
+}
+@media (max-width:640px){
+.work-log{ padding:0 20px; }
+.work-item,
+.work-item.has-media{ grid-template-columns:minmax(0,1fr); row-gap:12px; padding:28px 0; }
+.work-meta{ flex-direction:row; gap:12px; padding-top:0; }
+.work-item.has-media .work-media{ grid-column:1; margin-top:8px; }
+.work-item .btn{ height:44px; }
+}
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
 
 /* ===== Contact close ===== */
 .contact-card{
@@ -627,7 +655,6 @@ gap:32px 48px;
 align-items:end;
 padding:48px 32px;
 }
-.contact-title{ margin-bottom:20px; }
 .contact-email{
 display:inline-block;
 font-family:var(--font-mono);
@@ -1003,28 +1030,54 @@ transform: translateY(0);
 엔진 스터디 및 테크니컬 역량 확장을 위해 진행한 개인 작업입니다.
 </p>
 
-<div class="recent-grid">
-  <!-- UE5 C++/Blueprint 프로젝트 카드 -->
-  <article class="bp-card recent-card">
-    <span class="corner tl"></span><span class="corner tr"></span>
-    <span class="corner bl"></span><span class="corner br"></span>
+<div class="bp-card work-log">
+<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
 
-    <span class="index-tag">[01] Study &amp; Prototype</span>
-    <h3>UE5(C++/Blueprint) FPS Prototype</h3>
+<article class="work-item has-media">
+<div class="work-meta"><span class="index-tag">[01]</span></div>
+<div class="work-body">
+<h3>Heirloom Roll</h3>
+<p class="work-desc">주사위/포커 룰을 결합한 인생 게임(가문 키우기)입니다. AI + HTML5 기반으로 만들었으며, APK로 옮기기 전에 만든 프로토타입입니다.</p>
+<div class="tag-group"><span class="tag">HTML5</span><span class="tag">AI</span><span class="tag">Prototype</span></div>
+<a class="btn btn-outline btn-sm" href="https://heirloom-roll.ai.studio" target="_blank" rel="noopener">플레이해 보기 ↗</a>
+</div>
+<div class="work-media recent-media-wrap is-contain">
+<img src="./screenshots/work-heirloom-roll.png" alt="Heirloom Roll 플레이 화면: 캐릭터 능력치와 '큰 시험 앞에 선 Noah.' 이벤트, 공부·벼락치기·스터디 선택지" width="398" height="890" loading="lazy" />
+</div>
+</article>
 
-    <div class="recent-media-wrap">
-      <a href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer">
-        <img src="./ue5_project.jpg" alt="UE5 FPS Prototype 영상 썸네일 (YouTube)" />
-      </a>
-    </div>
+<article class="work-item has-media">
+<div class="work-meta"><span class="index-tag">[02]</span><span class="work-status">제작 중</span></div>
+<div class="work-body">
+<h3>Project QUIT</h3>
+<p class="work-desc">Unreal Engine 5 Listen Server로 구현 중인 멀티플레이 술래잡기 게임입니다. 프레임워크를 담당했습니다.</p>
+<div class="tag-group"><span class="tag">UE5</span><span class="tag">Listen Server</span><span class="tag">Multiplayer</span></div>
+</div>
+<div class="work-media recent-media-wrap is-pending"><span>[준비중]</span></div>
+</article>
 
-    <a
-      href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn btn-outline btn-sm recent-cta"
-    >YouTube에서 보기 ↗</a>
-  </article>
+<article class="work-item has-media">
+<div class="work-meta"><span class="index-tag">[03]</span><span class="work-status">제작 중</span></div>
+<div class="work-body">
+<h3>Project HBG</h3>
+<p class="work-desc">모바일 게임 Burger Please!를 모티브로 한 게임입니다. Three.js 기반으로 기능을 더한 프로토타입을 만들고 있으며, 로블록스 게임으로 옮기고 있습니다.</p>
+<div class="tag-group"><span class="tag">Three.js</span><span class="tag">Roblox</span><span class="tag">Prototype</span></div>
+</div>
+<div class="work-media recent-media-wrap">
+<img src="./screenshots/work-hbg.jpg" alt="Project HBG 플레이 화면: 매장 인테리어 편집 패널로 바닥·벽 컬러를 바꾸는 장면" width="1355" height="750" loading="lazy" />
+</div>
+</article>
+
+<article class="work-item has-media">
+<div class="work-meta"><span class="index-tag">[04]</span><span class="work-status">Study &amp; Prototype</span></div>
+<div class="work-body">
+<h3>UE5(C++/Blueprint) FPS Prototype</h3>
+<a class="btn btn-outline btn-sm" href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer">YouTube에서 보기 ↗</a>
+</div>
+<div class="work-media recent-media-wrap">
+<a href="https://youtu.be/dsxorL9Upec?si=FfETGv1tY-vy0uR9" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true"><img src="./ue5_project.jpg" alt="" loading="lazy" /></a>
+</div>
+</article>
 </div>
 </div>
 </section>
@@ -1036,7 +1089,7 @@ transform: translateY(0);
   <span class="corner tl"></span><span class="corner tr"></span>
   <span class="corner bl"></span><span class="corner br"></span>
   <div>
-    <h2 class="contact-title">함께 이야기 나눠요</h2>
+    <h2 class="sr-only">연락처</h2>
     <a class="contact-email" href="mailto:kwaksu91@gmail.com">kwaksu91@gmail.com</a>
   </div>
   <div class="btn-group contact-actions">
