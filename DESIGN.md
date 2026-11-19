@@ -193,7 +193,7 @@ components:
 - **Primary:** Signal Red Deep 배경 + 흰 텍스트, 좌우 28px. 페이지당 1–2개만 (예: "라이브 문서 열람하기").
 - **Hover:** 배경이 Signal Red Strong으로 바뀜, 160ms ease-out.
 - **Focus:** 모든 링크·버튼·탭에 2px Signal Red 외곽선, 2px 간격, 직각.
-- **Outline:** 투명 배경 + Ink 테두리·텍스트. hover 시 테두리와 텍스트가 Signal Red로 바뀜. 문서 액션("PDF 다운로드 ↓", "구글 문서 원본 ↗")에 쓰며, 이때는 38px 높이·0.75rem의 compact 변형.
+- **Outline:** 투명 배경 + Ink 테두리·텍스트. hover 시 테두리는 Signal Red, 텍스트는 Signal Red Deep. 문서·영상 액션("PDF 다운로드 ↓", "구글 슬라이드 원본 ↗", "YouTube에서 보기 ↗")에는 `.btn-sm` 변형(38px 높이, `--fs-label`, 좌우 16px)을 쓴다. 인라인 스타일로 크기를 덮어쓰지 않는다.
 - **Group:** 버튼 간격 16px, 줄바꿈 허용.
 
 ### Chips (Tags)
