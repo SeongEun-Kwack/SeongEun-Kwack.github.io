@@ -4,6 +4,7 @@ description: 기획서 한 장에서 서비스 운영까지 — 게임 기획자
 colors:
   signal-red: "#e5484d"
   signal-red-deep: "#c93a3e"
+  signal-red-strong: "#b0302f"
   ink: "#0a0a0a"
   graphite: "#6b6b6b"
   paper: "#fafafa"
@@ -49,14 +50,14 @@ spacing:
   section: "96px"
 components:
   button-primary:
-    backgroundColor: "{colors.signal-red}"
+    backgroundColor: "{colors.signal-red-deep}"
     textColor: "{colors.sheet}"
     typography: "{typography.label}"
     rounded: "{rounded.none}"
     padding: "0 28px"
     height: "48px"
   button-primary-hover:
-    backgroundColor: "{colors.signal-red-deep}"
+    backgroundColor: "{colors.signal-red-strong}"
   button-outline:
     backgroundColor: "transparent"
     textColor: "{colors.ink}"
@@ -81,7 +82,7 @@ components:
     rounded: "{rounded.none}"
     padding: "7px 14px"
   nav-cta-hover:
-    backgroundColor: "{colors.signal-red}"
+    backgroundColor: "{colors.signal-red-strong}"
     textColor: "{colors.sheet}"
 ---
 
@@ -110,7 +111,8 @@ components:
 
 ### Primary
 - **Signal Red** (`signal-red`): 주목 지점을 알리는 유일한 강조색. 주요 버튼 배경, 활성 탭 밑줄, 인덱스 숫자(`[01]`), 기간 표기, eyebrow 라벨, hover 시 테두리·십자 마커·링크.
-- **Signal Red Deep** (`signal-red-deep`): 주요 버튼 hover 배경 전용.
+- **Signal Red Deep** (`signal-red-deep`, CSS `--accent-text`): 빨간 **텍스트**와 흰 글자를 얹는 빨간 면(주요 버튼). 흰 바탕·Paper 위 4.5:1 이상.
+- **Signal Red Strong** (`signal-red-strong`, CSS `--accent-strong`): 주요 버튼·nav CTA hover 배경.
 
 ### Neutral
 - **Ink** (`ink`): 제목과 본문 텍스트, 외곽선 버튼 테두리, 토스트 배경.
@@ -121,6 +123,8 @@ components:
 - **Crosshair** (`crosshair`): 십자 마커 기본색, eyebrow 앞 `//`, 리스트 대시(`—`).
 
 ### Named Rules
+**The Readable Red Rule.** 밝은 Signal Red(#e5484d)는 선·테두리·십자 마커·밑줄·포커스 링 등 비텍스트 요소에만 쓴다. 글자색이나 흰 글자 뒤 배경에는 Signal Red Deep을 쓴다.
+
 **The One Signal Rule.** 빨강은 하나만, 표시 용도로만 쓴다. 넓은 면에 칠하는 건 주요 버튼과 nav CTA hover뿐이다. 두 번째 강조색을 들이지 않는다.
 
 **The Pencil Grey Rule.** 구조선은 모두 `grid-line` 한 단계로 통일한다. 선의 위계는 색 농도가 아니라 두께로 만든다 (기본 1px, 활성 탭 2px, 토스트 3px).
@@ -175,8 +179,9 @@ IBM Plex Sans는 한글 글리프가 없어서, 한국어 본문과 제목은 �
 ### Buttons
 단단하고 확신 있게. 높이 48px의 직각 블록에 모노 대문자 라벨을 넣는다.
 - **Shape:** 직각 (0px), 1px 테두리.
-- **Primary:** Signal Red 배경 + 흰 텍스트, 좌우 28px. 페이지당 1–2개만 (예: "라이브 문서 열람하기").
-- **Hover:** 배경이 Signal Red Deep으로 바뀜, 160ms ease-out.
+- **Primary:** Signal Red Deep 배경 + 흰 텍스트, 좌우 28px. 페이지당 1–2개만 (예: "라이브 문서 열람하기").
+- **Hover:** 배경이 Signal Red Strong으로 바뀜, 160ms ease-out.
+- **Focus:** 모든 링크·버튼·탭에 2px Signal Red 외곽선, 2px 간격, 직각.
 - **Outline:** 투명 배경 + Ink 테두리·텍스트. hover 시 테두리와 텍스트가 Signal Red로 바뀜. 문서 액션("PDF 다운로드 ↓", "구글 문서 원본 ↗")에 쓰며, 이때는 38px 높이·0.7rem의 compact 변형.
 - **Group:** 버튼 간격 16px, 줄바꿈 허용.
 
