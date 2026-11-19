@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-19T12:18:15.644551+00:00",
+  "title": "Design System: 곽성은 포트폴리오 Hub",
+  "extensions": {
+    "colorMeta": {
+      "signal-red": {
+        "role": "primary",
+        "displayName": "Signal Red",
+        "canonical": "#e5484d",
+        "tonalRamp": [
+          "#371617",
+          "#611e20",
+          "#952226",
+          "#d42126",
+          "#dc565a",
+          "#df9093",
+          "#e8c4c5",
+          "#f7eeee"
+        ]
+      },
+      "signal-red-deep": {
+        "role": "primary",
+        "displayName": "Signal Red Deep (accent-text)",
+        "canonical": "#c93a3e",
+        "tonalRamp": [
+          "#331a1a",
+          "#592628",
+          "#873033",
+          "#be363a",
+          "#cc6669",
+          "#d69a9b",
+          "#e4c8c9",
+          "#f6efef"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5c5c5c",
+          "#7a7a7a",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f2f2f2"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#6b6b6b",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5c5c5c",
+          "#7a7a7a",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f2f2f2"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#fafafa",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5c5c5c",
+          "#7a7a7a",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f2f2f2"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5c5c5c",
+          "#7a7a7a",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f2f2f2"
+        ]
+      },
+      "grid-line": {
+        "role": "neutral",
+        "displayName": "Grid Line",
+        "canonical": "#e6e6e6",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5c5c5c",
+          "#7a7a7a",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f2f2f2"
+        ]
+      },
+      "crosshair": {
+        "role": "neutral",
+        "displayName": "Crosshair",
+        "canonical": "#c2c2c2",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#5c5c5c",
+          "#7a7a7a",
+          "#999999",
+          "#b8b8b8",
+          "#d6d6d6",
+          "#f2f2f2"
+        ]
+      },
+      "signal-red-strong": {
+        "role": "primary",
+        "displayName": "Signal Red Strong",
+        "canonical": "#b0302f",
+        "tonalRamp": [
+          "#331a19",
+          "#5a2626",
+          "#883030",
+          "#c03635",
+          "#cd6665",
+          "#d69a99",
+          "#e4c8c8",
+          "#f6efef"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "히어로 직함 전용."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "섹션 제목."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "카드·문서 뷰어 제목."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "본문. 한글은 시스템 산세리프로 렌더링."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "모노 대문자: 인덱스·내비·버튼·탭·태그·기간."
+      }
+    },
+    "shadows": [
+      {
+        "name": "toast",
+        "value": "0 4px 16px rgba(0,0,0,0.15)",
+        "purpose": "일시적으로 떠 있는 토스트 전용. 콘텐츠 표면에는 그림자 없음."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state",
+        "value": "160ms ease-out",
+        "purpose": "hover/active 색·테두리 전환 기본값."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity 320ms ease-out",
+        "purpose": "스크롤 등장."
+      },
+      {
+        "name": "toast",
+        "value": "opacity/transform 200ms ease-out",
+        "purpose": "토스트 등장 (12px 상승)."
+      },
+      {
+        "name": "media-zoom",
+        "value": "transform 300ms ease-out",
+        "purpose": "카드 hover 시 미디어 1.02배."
+      },
+      {
+        "name": "slideshow",
+        "value": "55s cycle, 5s per slide",
+        "purpose": "스크린샷 크로스페이드, hover 시 정지, reduced-motion 시 첫 장 고정."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "content-max",
+        "value": "1200px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Signal Red 채움 버튼. 페이지당 1–2개의 핵심 행동.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">라이브 문서 열람하기</a>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-btn-primary{font-family:var(--font-mono);font-size:0.8125rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:0;border:1px solid var(--text);cursor:pointer;text-decoration:none;transition:background-color 160ms ease-out,color 160ms ease-out,border-color 160ms ease-out;background:var(--accent-text);border-color:var(--accent-text);color:#fff;}.ds-btn-primary:hover{background:var(--accent-strong);border-color:var(--accent-strong);}.ds-btn-primary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Ink 테두리 버튼. 문서 다운로드·원본 링크 등 보조 행동.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">PDF 다운로드 ↓</a>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-btn-outline{font-family:var(--font-mono);font-size:0.8125rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 28px;border-radius:0;border:1px solid var(--text);cursor:pointer;text-decoration:none;transition:background-color 160ms ease-out,color 160ms ease-out,border-color 160ms ease-out;background:transparent;color:var(--text);}.ds-btn-outline:hover{border-color:var(--accent-text);color:var(--accent);}.ds-btn-outline:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-cta",
+      "description": "모노 로고 + [01] 인덱스 링크 + 박스형 EMAIL CTA.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-logo\" href=\"#\">KWACK_SEONGEUN<span>.</span></a><ul><li><a href=\"#\">[01] INTRO</a></li><li><a href=\"#\">[02] PORTFOLIO VIEWER</a></li><li><a class=\"ds-nav-cta\" href=\"#\">EMAIL ✉</a></li></ul></nav>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-nav{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 24px;background:rgba(250,250,250,0.92);border-bottom:1px solid var(--grid);}.ds-nav-logo{font-family:var(--font-mono);font-size:0.85rem;font-weight:600;letter-spacing:0.02em;color:var(--text);text-decoration:none;}.ds-nav-logo span{color:var(--accent-text);}.ds-nav ul{display:flex;align-items:center;gap:28px;list-style:none;margin:0;padding:0;}.ds-nav ul a{font-family:var(--font-mono);font-size:0.8125rem;font-weight:500;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;color:var(--text-muted);transition:color 160ms ease-out;}.ds-nav ul a:hover{color:var(--accent-text);}.ds-nav ul a.ds-nav-cta{border:1px solid var(--text);padding:7px 14px;color:var(--text);transition:all 160ms ease-out;}.ds-nav ul a.ds-nav-cta:hover{border-color:var(--accent-text);background:var(--accent-strong);color:#fff;}.ds-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "분류 표시용 모노 태그.",
+      "html": "<div class=\"ds-tags\"><span class=\"ds-tag\">수집형 RPG</span><span class=\"ds-tag\">PvE/PvP</span><span class=\"ds-tag\">시스템 기획</span></div>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-tags{display:flex;flex-wrap:wrap;gap:8px;}.ds-tag{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.02em;text-transform:uppercase;border:1px solid var(--grid);padding:5px 10px;color:var(--text-muted);transition:border-color 160ms ease-out,color 160ms ease-out;}.ds-tag:hover{border-color:var(--accent-text);color:var(--accent);}"
+    },
+    {
+      "name": "Blueprint Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Sheet 시트 + 1px 테두리 + 네 모서리 십자 마커. hover 시 빨간 선.",
+      "html": "<article class=\"ds-card\" tabindex=\"0\"><i class=\"c tl\"></i><i class=\"c tr\"></i><i class=\"c bl\"></i><i class=\"c br\"></i><span class=\"ds-card-period\">2018.10 — 2023.05</span><h3>킹덤스토리 시스템 &amp; 콘텐츠 기획</h3><p>엔드 콘텐츠 '선인의 탑(무한 PvE 던전)' 기획 및 밸런싱</p></article>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-card{position:relative;background:var(--surface);border:1px solid var(--grid);padding:32px;--cc:var(--cross);font-family:var(--font-display);color:var(--text);transition:border-color 160ms ease-out;max-width:420px;}.ds-card:hover,.ds-card:focus-visible{--cc:var(--accent);border-color:var(--accent);outline:none;}.ds-card .c{position:absolute;width:12px;height:12px;}.ds-card .c::before,.ds-card .c::after{content:'';position:absolute;background:var(--cc);transition:background-color 160ms ease-out;}.ds-card .c::before{top:50%;left:0;width:100%;height:1px;}.ds-card .c::after{left:50%;top:0;height:100%;width:1px;}.ds-card .tl{top:-6px;left:-6px}.ds-card .tr{top:-6px;right:-6px}.ds-card .bl{bottom:-6px;left:-6px}.ds-card .br{bottom:-6px;right:-6px}.ds-card-period{font-family:var(--font-mono);font-size:0.75rem;color:var(--accent-text);letter-spacing:0.02em;}.ds-card h3{font-size:1.15rem;font-weight:600;letter-spacing:-0.01em;margin:8px 0;}.ds-card p{font-size:0.92rem;line-height:1.55;margin:0;color:var(--text);}"
+    },
+    {
+      "name": "Document Tabs",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "모노 텍스트 탭. 활성 탭은 Signal Red 2px 밑줄.",
+      "html": "<div class=\"ds-tabs\"><button class=\"active\"><span>[01]</span>경력기술서 &amp; 관련 이력</button><button><span>[02]</span>(역) 워프레임 MOD 시스템</button><button><span>[03]</span>보스 컨셉 기획서</button></div>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--grid);}.ds-tabs button{font-family:var(--font-mono);font-size:0.8125rem;font-weight:500;letter-spacing:0.02em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;color:var(--text-muted);padding:12px 18px 12px 0;margin-right:24px;cursor:pointer;transition:color 160ms ease-out,border-color 160ms ease-out;}.ds-tabs button span{color:var(--accent-text);margin-right:8px;}.ds-tabs button:hover{color:var(--text);}.ds-tabs button.active{color:var(--text);border-bottom-color:var(--accent);}.ds-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}"
+    },
+    {
+      "name": "Eyebrow + Headline",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "섹션 도입부: // EYEBROW → Headline → Graphite 설명.",
+      "html": "<header class=\"ds-sec\"><span class=\"ds-eyebrow\">Portfolio</span><h2>Document Hub</h2><p>PDF, Google slide, docs, Figma를 활용하여 작성되었습니다.</p></header>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-sec{font-family:var(--font-display);color:var(--text);}.ds-eyebrow{font-family:var(--font-mono);font-size:0.75rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent-text);display:inline-flex;gap:8px;margin-bottom:16px;}.ds-eyebrow::before{content:'//';color:var(--cross);}.ds-sec h2{font-size:clamp(1.6rem,2.8vw,2.3rem);font-weight:600;line-height:1.15;letter-spacing:-0.01em;margin:0 0 12px;}.ds-sec p{color:var(--text-muted);max-width:60ch;margin:0;}"
+    },
+    {
+      "name": "Toast",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "이메일 복사 확인 토스트. 유일하게 그림자를 쓰는 요소.",
+      "html": "<div class=\"ds-toast\">이메일이 복사되었습니다. 감사합니다.</div>",
+      "css": ":host{--accent:#e5484d;--text:#0a0a0a;--text-muted:#6b6b6b;--grid:#e6e6e6;--cross:#c2c2c2;--surface:#fff;--bg:#fafafa;--font-display:'Pretendard Variable',Pretendard,system-ui,sans-serif;--accent-text:#c93a3e;--accent-strong:#b0302f;--font-mono:'JetBrains Mono','Pretendard Variable',ui-monospace,monospace;}.ds-toast{display:inline-block;background:var(--text);color:#fff;font-family:var(--font-mono);font-size:0.8125rem;letter-spacing:0.02em;padding:12px 20px;border-left:3px solid var(--accent);box-shadow:0 4px 16px rgba(0,0,0,0.15);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Planner's Grid Notebook",
+    "overview": "**Creative North Star: \"The Planner's Grid Notebook\"**\n\n이 사이트는 기획자의 모눈 노트를 펼쳐 놓은 모양이다. 24px 점 격자가 종이 전체에 깔려 있고, 그 위에 흰 시트(카드)를 핀으로 꽂듯 올린다. 모서리마다 작은 십자 마커가 있다. 모노스페이스 인덱스(`[01]`, `// INTRO`)는 노트 여백의 메모 번호처럼 읽히고, 구조와 순서가 곧 사고 과정의 증거가 된다.\n\n밀도는 중간이다. 섹션 사이 여백은 넉넉하게(96px), 섹션 안의 정보는 촘촘하게 정리한다. 장식은 격자, 십자 마커, 인덱스 라벨 세 가지뿐이다. 색은 거의 무채색이고, 강조색 하나(Signal Red)가 \"여기를 보라\"는 표시 역할만 한다. 컴포넌트는 단단하고 확신 있게: 각진 모서리, 1px 선, 그림자 없음, hover에서는 빨간 선으로 분명하게 반응한다.\n\n실제 스타일은 `index.html` 인라인 `<style>`에 있다. 루트의 `style.css`와 `script.js`는 이 페이지에 연결되지 않은 별도 자료이므로 디자인 근거로 쓰지 않는다.",
+    "keyCharacteristics": [
+      "24px 점 격자 배경과 최대 1200px 폭의 좌우 세로선 프레임",
+      "카드 네 모서리의 십자 마커. hover 시 테두리와 함께 빨간색으로 바뀜",
+      "모노스페이스 대문자 라벨로 인덱스, 기간, 태그, 내비게이션 표시",
+      "모서리 0px, 그림자 없음, 1px 선으로만 구조 표현",
+      "강조색은 Signal Red 하나"
+    ],
+    "rules": [
+      {
+        "name": "The Readable Red Rule",
+        "body": "밝은 Signal Red(#e5484d)는 선·테두리·십자 마커·밑줄·포커스 링 등 비텍스트 요소에만 쓴다. 글자색이나 흰 글자 뒤 배경에는 Signal Red Deep을 쓴다.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Signal Rule",
+        "body": "빨강은 하나만, 표시 용도로만 쓴다. 넓은 면에 칠하는 건 주요 버튼과 nav CTA hover뿐이다. 두 번째 강조색을 들이지 않는다.",
+        "section": "colors"
+      },
+      {
+        "name": "The Pencil Grey Rule",
+        "body": "구조선은 모두 `grid-line` 한 단계로 통일한다. 선의 위계는 색 농도가 아니라 두께로 만든다 (기본 1px, 활성 탭 2px, 토스트 3px).",
+        "section": "colors"
+      },
+      {
+        "name": "The 12px Floor Rule",
+        "body": "화면에 보이는 글자는 0.75rem(12px) 아래로 내려가지 않는다. 라벨을 조용하게 만들고 싶으면 크기를 줄이지 말고 Graphite 색, 가는 자간, 대문자 모노로 낮춘다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Token Scale Rule",
+        "body": "글자 크기는 `--fs-*` 토큰으로만 지정한다. 새 크기가 필요하면 값을 직접 쓰지 말고 기존 단계 중에서 고른다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Margin Note Rule",
+        "body": "인덱스, 기간, 분류, 동작 이름처럼 시스템이 매기는 정보는 모노 대문자로 쓴다. 문장과 설명은 산세리프로 쓴다. 이 둘을 섞지 않는다.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Sheet Rule",
+        "body": "콘텐츠 표면에는 그림자를 쓰지 않는다. 레이어가 필요하면 Sheet 배경과 `grid-line` 테두리로 분리한다. 그림자는 일시적으로 떠 있는 요소(토스트)에만 허용한다.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** 새 섹션은 `// EYEBROW` → Headline → Graphite 설명 순서로 시작하고, 섹션 사이에는 1px `grid-line` 구분선과 96px 여백을 둔다.",
+      "**Do** 모든 인덱스와 순번을 `[01]` 모노 형식으로 쓰고, 숫자는 Signal Red로 칠한다.",
+      "**Do** 새 카드는 Blueprint Card(Sheet 배경, 1px 테두리, 십자 마커 4개, 32px 패딩)로 만들고 hover 반응을 똑같이 맞춘다.",
+      "**Do** 모든 상태 전환은 160ms ease-out으로 맞춘다 (등장 효과 320ms, 토스트 200ms).",
+      "**Do** 외부 링크에는 `↗`, 다운로드에는 `↓` 기호를 라벨 끝에 붙인다.",
+      "**Do** 새 모션에는 `prefers-reduced-motion` 대응을 함께 넣는다."
+    ],
+    "donts": [
+      "**Don't** 모서리를 둥글게 만들지 않는다. 모든 표면과 컨트롤은 0px이다.",
+      "**Don't** 콘텐츠 카드나 버튼에 그림자를 넣지 않는다.",
+      "**Don't** Signal Red 외에 두 번째 강조색이나 그라데이션을 들이지 않는다.",
+      "**Don't** 설명 문장을 모노체로, 인덱스·라벨을 산세리프로 쓰지 않는다 (Margin Note Rule).",
+      "**Don't** 연결되지 않은 `style.css`의 값(검정·흰색 반전 변수, `#a40000` 계열)을 이 시스템의 토큰으로 가져오지 않는다."
+    ]
+  }
+}
